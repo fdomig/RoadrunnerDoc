@@ -2,3 +2,4 @@ documentation.pdf
 *.log
 *.aux
 *.out
+*.synctex.gz
