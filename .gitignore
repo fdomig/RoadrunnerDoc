@@ -1,4 +1,4 @@
-documentation.pdf
+*.toc
 *.log
 *.aux
 *.out
