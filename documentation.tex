@@ -34,10 +34,10 @@
 \usepackage{graphicx}
 
 \usepackage{fancyhdr} % Positionierung der Seitenzahlen
-\fancyhead[R]{}
-\fancyfoot[R]{\Roman{page}}
-
+\fancyhead{}
+\fancyfoot[C]{\Roman{page}}
 \renewcommand{\headrulewidth}{0pt}
+\setlength{\headheight}{13.6pt} % behebt headheight Warning
 
  % behebt headheight Warning
 \setlength{\headheight}{13.6pt}
@@ -123,7 +123,7 @@
 \selectlanguage{ngerman}
 
 \pagestyle{empty} % Vorerst keine Seitenzahlen
-\pagenumbering{alph} % Unsichtbare alphabetische Nummerierung
+\pagenumbering{alpha} % Unsichtbare alphabetische Nummerierung
 
 \begin{center}
 \textsc{Fachhochschule Vorarlberg GmbH}\\
@@ -148,10 +148,20 @@ Betreuer:    & Prof.(FH) DI Wolfgang Auer\\
 %______________________________________________________________________
 
 \clearpage
-\input{input/preface}
+\pagestyle{fancy}
+\pagenumbering{roman} % Römische Seitenzahlen
+\setcounter{page}{1}
+
+\tableofcontents
+
 
 \clearpage
-\tableofcontents
+\pagenumbering{arabic}
+\setcounter{page}{1}
+% Geändertes Format für Seitenränder, arabische Seitenzahlen
+\fancyfoot[CO]{\thepage}
+
+\input{input/preface}
 
 \clearpage
 \input{input/general}
@@ -187,6 +197,7 @@ Betreuer:    & Prof.(FH) DI Wolfgang Auer\\
 %______________________________________________________________________
 
 \cleardoublepage
+\pagenumbering{Roman}
 
 \begin{thebibliography}{99}
 \addcontentsline{toc}{section}{Literaturverzeichnis}
