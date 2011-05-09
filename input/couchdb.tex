@@ -1,5 +1,22 @@
 \section{CouchDB}
 
+\subsection{JSON}
+
+Als Dokumentstruktur wird von CouchDB JSON verwendet. Vor der Speicherung eines JSON-Dokumentes in die Datenbank werden die Validierungsmethoden von allen Designdokumenten in der Datenbank aufgerufen. Nur wenn alle Validierungen erfolgreich sind wird das Dokument gespeichert. Obwohl JSON Schemalos ist kann trotzdem eine Schemavalidierung durchgeführt werden. Als Schema wird das JSON-Schema verwendet, dass sich aktuell in Version 03 befindet.\footnote{http://tools.ietf.org/html/draft-zyp-json-schema-03} 
+
+\subsubsection{Schema-Validierung}
+
+In einem Designdokument können verschiedene Validierungen eingeführt werden. Zusätzlich zu Validierungen der Benutzerrechte werden im Projekt Roadrunner alle Dokumente auf das definierte JSON-Schema validiert. 
+Zur Durchführung der Schema-Validierung wurde ein spezielles Designdokument erzeugt. In diesem Designdokument befinden sich folgende Elemente:
+
+\begin{description}
+\item[validate\_doc\_update.js] Die JavaScript-Methode \texttt{function (newDoc, oldDoc, userCtx )} wird vor der Speicherung von jedem Dokument aufgerufen. In dieser Methode wird die Schema-Validierung durchgeführt. Die Methode besitzt keinen Rückgabewert. Wenn die Methode ohne aulösen einer Exception durchläuft gilt das Dokument für diese Validierungsmethode als valide.
+\item[schema] Die verwendeten Schemas befinden sich in diesem Ordner im JSON-Format
+\item[vendor/json-schema] Zur Durchführung der Validierung wird das Projekt json-schema\footnote{https://github.com/kriszyp/json-schema} verwendet. Bei dem Projekt handelt es sich um eine kleine JavaScript-Klasse, die keine zusätzlichen Abhängigkeiten hat und alle benötigten Funktionalitäten zur Verfügung stellt.
+\end{description}
+
+Ein alternatives Validierungsframework wäre das JSON-Schema-Validator-Projekt\footnote{https://github.com/garycourt/JSV.git}. Das JSV-Framework bietet die selben Funktionalitäten wie das json-schema-Projekt. JSV verwendet aber Aufrufe an die Java-Script-Methode \texttt{require(...)}. Diese Methode wurde von der CouchDB-Validierungsmethode überschrieben und dient dort zur Validierung einzelner Elemente in einem JSON-Dokument. Durch das Überschreiben der Methode von CouchDB arbeitet der \texttt{require}-Befehl im JSV-Framework nicht korrekt und somit kann dieses nicht verwendet werden.
+
 \subsection{Dokumentstruktur}
 
 \subsection{Designdokumente}
