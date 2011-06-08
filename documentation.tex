@@ -4,7 +4,7 @@
 % Title, author and date
 %======================================================================
 
-\title{Projektdokumentation Roadrunner}
+\title{Projektdokumentation Transportüberwachungssystem Roadrunner}
 \author{
 	Franziskus Domig, B.Sc.\\
 		\and
@@ -43,16 +43,18 @@
 \pagenumbering{alpha} % Unsichtbare alphabetische Nummerierung
 
 \begin{center}
-\textsc{Fachhochschule Vorarlberg GmbH}\\
+%\textsc{Fachhochschule Vorarlberg GmbH}\\
 
-\vspace{5cm}
+\includegraphics[width=60mm]{files/logo-fhv.png}
+
+\vspace{4cm}
 {\large\textbf{Projektdokumentation}}\vspace{.5cm}
 
-{\LARGE Roadrunner}
+{\LARGE Transportüberwachungssystem Roadrunner}
 
 \end{center}
 
-\vspace{14cm}
+\vspace{13cm}
 
 
 \begin{tabular}{ll}
@@ -69,6 +71,9 @@ Betreuer:    & Prof.(FH) DI Wolfgang Auer\\
 \pagenumbering{roman} % Römische Seitenzahlen
 \setcounter{page}{1}
 
+\input{input/abstract}
+
+\clearpage
 \tableofcontents
 
 
@@ -78,10 +83,10 @@ Betreuer:    & Prof.(FH) DI Wolfgang Auer\\
 % Geändertes Format für Seitenränder, arabische Seitenzahlen
 \fancyfoot[CO]{\thepage}
 
-\input{input/preface}
+\input{input/motivation}
 
 \clearpage
-\input{input/general}
+\input{input/requirements}
 
 \clearpage
 \input{input/technology}
@@ -91,9 +96,6 @@ Betreuer:    & Prof.(FH) DI Wolfgang Auer\\
 
 \clearpage
 \input{input/couchdb}
-
-\clearpage
-\input{input/users}
 
 \clearpage
 \input{input/android}

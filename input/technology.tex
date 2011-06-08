@@ -1,15 +1,15 @@
-\section{Technologie}
+\section{Systembeschreibung und -architektur}
 \label{sec:technology}
 
 In diesem Abschnitt werden die von diesem Projekt verwendeten Technologien erläutert. Insbesondere werden die Gründe beschrieben, weswegen diese Technologien eingesetzt und anderen vorgezogen werden. Die Vor- sowie Nachteile der entsprechenden Technologien werden gegenübergestellt und besprochen. Zugleich werden die entsprechenden Technologien auf ihre Tauglichkeit in einem real logistischen Szenario geprüft.
 
-\subsection{CouchDB}
+\subsection{Verteiltes Datenbansystem CouchDB}
 \label{subsec:couchdb}
 CouchDB\footnote{The Apache CouchDB Project, \url{http://couchdb.apache.org/}} ist eine auf die Verwaltung von Dokumenten basierte Datenbank. CouchDB kann ähnlich wie das MapReduce Framework von Google\footnote{vgl. \url{http://en.wikipedia.org/wiki/MapReduce}} abgefragt sowie indiziert werden.
 
 TODO: Ausführlicher beschreiben.
 
-\subsection{Node.js}
+\subsection{Sensoren-Simulation mit Node.js}
 \label{subsec:nodejs}
 
 Node.js ist ein ereignisgesteuertes I/O Framework für die V8 JavaScript Engine \cite{Wikipedia10a}. Diese wurde in C++ sowie JavaScript entwickelt und liegt in einer MIT-Lizenz vor, welches es für dieses Projekt einsetzbar macht und zugleich auch in einem realen Szenario eingesetzt werden könnte.
@@ -17,16 +17,12 @@ Node.js ist ein ereignisgesteuertes I/O Framework für die V8 JavaScript Engine 
 Mit Node.js können mit wenigen Zeilen Code, Server-Applikationen programmiert werden. Es wird hierzu auf einem Interface (IP) sowie einem beliebigen Port eine JavaScript Callback-Funktion registriert, welche bei einem Zugriff aufgerufen wird. Dies macht es sehr einfach, Sensoren in diesem System zu simulieren, welche via HTTP-Requests ``ausgelesen'' werden können.
 
 
-\subsection{PHP - Silex}
+\subsection{Webapplikations-Framework Silex}
 
 PHP ist eine dynamische Skriptsprache, die speziell für den Einsatz auf Webservern entwickelt wurde. Jegliche Anfrage an eine PHP-Datei auf einem entsprechend konfigurierten Webserver wird durch die \emph{PHP-Runtime} interpretiert. Dabei wird eine passende Antwort generiert und durch den Webserver an den Client gesendet. Dies stellt die Basis für eine dynamische Webseite mit PHP dar. PHP ist verfügbar für eine breite Anzahl an Webservern, sowie für unterschiedlichste Plattformen wie Linux, Mac OS X, Windows oder Unix.
 
 Silex\footnote{vgl. \url{http://silex-project.org}} ist ein Mikroframework für PHP 5.3. Es basiert wiederum auf dem Kern des Symfony2\footnote{vgl. \url{http://symfony.com}} Framework.
 
-\subsection{Android/Java}
-
-TODO
-
-\subsection{Barscanner}
+\subsection{Mobiles Gerät auf Basis von Android}
 
 TODO
