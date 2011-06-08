@@ -1,108 +1,27 @@
 \documentclass[11pt,a4paper]{article}
 
-% für \hyphenation mit Umlauten
-\usepackage[T1]{fontenc}
-\usepackage[utf8]{inputenc}
-\usepackage[ngerman,english]{babel}
+%======================================================================
+% Title, author and date
+%======================================================================
 
-% Times-Roman-Schrift (auch für mathematische Formeln)
-\usepackage{mathptmx} 
-
-% comments
-\usepackage{verbatim} 
-
-% Zum Setzen von URLs
-\usepackage{color}
-\usepackage{alltt}
-\definecolor{darkred}{rgb}{.25,0,0}
-\definecolor{darkgreen}{rgb}{0,.2,0}
-\definecolor{darkmagenta}{rgb}{.2,0,.2}
-\definecolor{darkcyan}{rgb}{0,.15,.15}
-
-\usepackage[plainpages=false,bookmarks=true,bookmarksopen=true,colorlinks=true,
-  linkcolor=darkred,citecolor=darkgreen,filecolor=darkmagenta,
-  menucolor=darkred,urlcolor=darkcyan]{hyperref}
-
-% Zeilenabstand
-\renewcommand{\baselinestretch}{1.5}
-
-% anhang
-\usepackage[toc,page]{appendix}
-
-% pdflatex: Bilder in den Formaten .jpeg, .png und .pdf
-% latex: Bilder im .eps-Format
-\usepackage{graphicx}
-
-\usepackage{fancyhdr} % Positionierung der Seitenzahlen
-\fancyhead{}
-\fancyfoot[C]{\Roman{page}}
-\renewcommand{\headrulewidth}{0pt}
-\setlength{\headheight}{13.6pt} % behebt headheight Warning
-
- % behebt headheight Warning
-\setlength{\headheight}{13.6pt}
-
-% Korrektes Format für Nummerierung von Abbildungen (figure) und
-% Tabellen (table): <Kapitelnummer>.<Abbildungsnummer>
-\makeatletter
-\@addtoreset{figure}{section}
-\renewcommand{\thefigure}{\thesection.\arabic{figure}}
-\@addtoreset{table}{section}
-\renewcommand{\thetable}{\thesection.\arabic{table}}
-\makeatother
-
-% Listings für Sourcecode
-\usepackage{listings}
-  \usepackage{courier}
- \lstset{
-        basicstyle=\footnotesize\ttfamily, % Standardschrift
-        numbers=left,               % Ort der Zeilennummern
-        numberstyle=\tiny,          % Stil der Zeilennummern
-        %stepnumber=2,               % Abstand zwischen den Zeilennummern
-        numbersep=5pt,              % Abstand der Nummern zum Text
-        tabsize=2,                  % Groesse von Tabs
-        extendedchars=true,         %
-        breaklines=true,            % Zeilen werden Umgebrochen
-        keywordstyle=\color{red},
-        frame=b,         
-        keywordstyle=[1]{\color{DarkSkyBlue}},    % Stil der Keywords
-        keywordstyle=[2]{\color{DarkScarletRed}},    %
-        keywordstyle=[3]{\bfseries},    %
-        keywordstyle=[4]{\color{DarkPlum}},    %
-        keywordstyle=[5]{\color{SkyBlue}},    %
-		stringstyle={\color{Chocolate}},
-        showspaces=false,           % Leerzeichen anzeigen ?
-        showtabs=false,             % Tabs anzeigen ?
-        xleftmargin=17pt,
-        framexleftmargin=17pt,
-        framexrightmargin=5pt,
-        framexbottommargin=4pt,
-        backgroundcolor=\color{Aluminium1},
-        showstringspaces=false,      % Leerzeichen in Strings anzeigen ?
-		%language=php
-		morekeywords=[1]{Interface,return,static,function}
+\title{Projektdokumentation Roadrunner}
+\author{
+	Franziskus Domig, B.Sc.\\
+		\and
+	Stefan Gassner, B.Sc.\\
+		\and
+	Wolfgang Halbeisen\\
+		\and
+	Matthias Schmid, B.Sc.\\	
 }
-    %\DeclareCaptionFont{blue}{\color{blue}} 
+\date{\today}
 
-  %\captionsetup[lstlisting]{singlelinecheck=false, labelfont={blue}, textfont={blue}}
-  \usepackage{caption}
-\DeclareCaptionFont{white}{\color{white}}
-\DeclareCaptionFormat{listing}{\colorbox[cmyk]{0.43, 0.35, 0.35,0.01}{\parbox{\textwidth}{\hspace{15pt}#1#2#3}}}
-\captionsetup[lstlisting]{format=listing,labelfont=white,textfont=white, singlelinecheck=false, margin=0pt, font={bf,footnotesize}}
-\renewcommand\lstlistingname{Codeblock}
- 
+%======================================================================
+% Packages
+%======================================================================
 
-\sloppy % Damit LaTeX nicht so viel über "overfull hbox" u.Ä. meckert
+\input{input/packages}
 
-% Ränder
-\addtolength{\topmargin}{-16mm}
-\setlength{\oddsidemargin}{40mm}
-\setlength{\evensidemargin}{40mm}
-\addtolength{\oddsidemargin}{-1in}
-\addtolength{\evensidemargin}{-1in}
-\setlength{\textwidth}{13cm}
-\addtolength{\textheight}{34mm}
-%______________________________________________________________________
 
 \hypersetup{
 	pdfauthor = {Franziskus Domig, BSc;
@@ -113,9 +32,7 @@
 }
 
 %======================================================================
-%
 %      Document
-%
 %======================================================================
 
 \begin{document}
@@ -129,7 +46,7 @@
 \textsc{Fachhochschule Vorarlberg GmbH}\\
 
 \vspace{5cm}
-{\large\textbf{Dokumentation}}\vspace{.5cm}
+{\large\textbf{Projektdokumentation}}\vspace{.5cm}
 
 {\LARGE Roadrunner}
 
@@ -196,30 +113,10 @@ Betreuer:    & Prof.(FH) DI Wolfgang Auer\\
 \clearpage
 \input{input/sensors}
 
-
 %______________________________________________________________________
 
 \cleardoublepage
-\pagenumbering{Roman}
-
-\begin{thebibliography}{99}
-\addcontentsline{toc}{section}{Literaturverzeichnis}
-
-\bibitem[Gamma 94]{Gamma94}
-  E.\ Gamma, R.\ Helm, R.\ Johnson, J.\ Vlissides:
-    Design Patterns: Elements of Reusable Object-Oriented Software.
-	MA: Addison-Wesley, 1994.
-
-%    Web-References
-%______________________________________________________________________
-
-\hspace{-\leftmargin}{\Large\bfseries Web-Referenzen} % Wüster Hack %-|
-
-\bibitem[Wikipedia 10a]{Wikipedia10a}
-  Wikipedia: Node.js
-    \url{http://de.wikipedia.org/wiki/Node.js}, besucht am 20.04.2011.
-
-\end{thebibliography}
+\input{input/bibliography}
 
 
 % ende des hauptteils
