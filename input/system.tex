@@ -7,34 +7,6 @@ In diesem Abschnitt werden die in diesem Projekt verwendeten Technologien
 	Nachteile der entsprechenden Technologien werden gegenübergestellt und
 	besprochen. Zugleich werden die entsprechenden Technologien auf ihre
 	Tauglichkeit in einem real logistischen Szenario geprüft.
-	
-\subsection{Verteiltes Datenbansystem CouchDB}
-\label{subsec:couchdb}
-
-Bei einem Transportüberwachungssystem ist die Datensicherung ein
-	wichtiger Aspekt. In diesem Kapitel werden unterschiedliche 
-	Möglichkeiten der Datenverwaltung betrachtet und erläutert welches
-	System für das Projekt Roadrunner verwendet wird.
-
-In diesem Projekt wurde durch die in Kapitel~\ref{sec:requirements} spezifizierten
-	Anforderungen ein Fokus auf die Verteiltheit des Systems gelegt. Es fallen
-	durch die mobile Transportüberwachung Daten auf mobilen Geräten an, welche
-	mit einem Backendsystem synchronisiert werden müssen. Aus diesem Grund wurde
-	für das Datenbanksystem kein klassisches System in Betracht gezogen. Um einen
-	neuen Ansatz in der Datenpersistierung zu erlernen, wurde das verteilte
-	und dokumentbasierte Datenbankmanagementsystem \emph{CouchDB}\footnote{The
-	Apache CouchDB Project, \url{http://couchdb.apache.org/}} verwendet.
-
-In einem real logistischen Szenario muss auf die Skalierbarkeit sowie die
-	Robustheit von CouchDB betrachtet werden. Klassische relationale
-	Datenbankmanagementsysteme bringen durch die bereits sehr gut entwickelten
-	Versionen vor allem einen Vorteil in der Robustheit und Stabilität. Dennoch,
-	CouchDB wird bereits seit 2005 entwickelt und liegt aktuell in der stabilen
-	Version 1.1.0 (6. Juni 2011) vor und wird bereits in mehreren kommerziellen
-	Projekten wie beispielsweise in Ubuntu \cite{Murphy09}[S. 1] eingesetzt.
-
-Einen detaillierten Überblick der Verwendung von CouchDB in diesem Projekt
-	wird in Kapitel~\ref{sec:couchdb} gegeben.
 
 \subsection{Mobiles Gerät auf Basis von Android}
 
@@ -70,6 +42,34 @@ Auch in einem realen Szenario lässt sich Android hervorragend einsetzten. Es is
 	
 Im Kapitel~\ref{sec:android} wird die in diesem Projekt erstellte Android Applikation
 	beschrieben.
+
+\subsection{Verteiltes Datenbansystem CouchDB}
+\label{subsec:couchdb}
+
+Bei einem Transportüberwachungssystem ist die Datensicherung ein
+	wichtiger Aspekt. In diesem Kapitel werden unterschiedliche 
+	Möglichkeiten der Datenverwaltung betrachtet und erläutert welches
+	System für das Projekt Roadrunner verwendet wird.
+
+In diesem Projekt wurde durch die in Kapitel~\ref{sec:requirements} spezifizierten
+	Anforderungen ein Fokus auf die Verteiltheit des Systems gelegt. Es fallen
+	durch die mobile Transportüberwachung Daten auf mobilen Geräten an, welche
+	mit einem Backendsystem synchronisiert werden müssen. Aus diesem Grund wurde
+	für das Datenbanksystem kein klassisches System in Betracht gezogen. Um einen
+	neuen Ansatz in der Datenpersistierung zu erlernen, wurde das verteilte
+	und dokumentbasierte Datenbankmanagementsystem \emph{CouchDB}\footnote{The
+	Apache CouchDB Project, \url{http://couchdb.apache.org/}} verwendet.
+
+In einem real logistischen Szenario muss auf die Skalierbarkeit sowie die
+	Robustheit von CouchDB betrachtet werden. Klassische relationale
+	Datenbankmanagementsysteme bringen durch die bereits sehr gut entwickelten
+	Versionen vor allem einen Vorteil in der Robustheit und Stabilität. Dennoch,
+	CouchDB wird bereits seit 2005 entwickelt und liegt aktuell in der stabilen
+	Version 1.1.0 (6. Juni 2011) vor und wird bereits in mehreren kommerziellen
+	Projekten wie beispielsweise in Ubuntu \cite{Murphy09}[S. 1] eingesetzt.
+
+Einen detaillierten Überblick der Verwendung von CouchDB in diesem Projekt
+	wird in Kapitel~\ref{sec:couchdb} gegeben.
 
 \subsection{Webapplikation mit dem Framework Silex}
 \label{subsec:webapplication}
