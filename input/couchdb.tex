@@ -1,46 +1,70 @@
 \section{CouchDB Applikation}
 \label{sec:couchdb}
 
-\subsection{JSON}
+Apache CouchDB ist ein Dokument-Orientiertes-Datenbanksystem für die Verwendung
+	mit JavaScript. CouchDB bietet inkrementelle Replikation mit bi-directionaler
+	Konflikt-Erkennung und -Lösung.
+	
+CouchDB bietet eine REST-API \cite{Fowler10}[S. 1] via \emph{JavaScript Object
+	Notation} (JSON) an, welche von jeder beliebigen Umgebung mit Hilfe von
+	HTTP-Requests abgerufen werden kann. CouchDB ist zusätzlich ein System, welches
+	eine beliebige Skalierbarkeit sowie Erweiterbarkeit anbietet
+	\cite{CouchDB11}[S. 1].
+	
+In diesem Projekt wurde CouchDB eingesetzt, um ein relativ neues Gebiet der
+	Datenpersistierung zu erlernen. Durch die einfache Replizierung von Daten,
+	konnte CouchDB sowohl auf der Backend-Webapplikation (vgl.
+	Kapitel~\ref{sec:webapplication}) als auch auf den mobilen Geräten (vgl.
+	Kapitel~\ref{sec:android}) eingesetzt werden.
 
-Als Dokumentstruktur wird von CouchDB JSON verwendet. Vor der Speicherung eines JSON-Dokumentes in die Datenbank werden die Validierungsmethoden von allen Designdokumenten in der Datenbank aufgerufen. Nur wenn alle Validierungen erfolgreich sind wird das Dokument gespeichert. Obwohl JSON Schemalos ist kann trotzdem eine Schemavalidierung durchgeführt werden. Als Schema wird das JSON-Schema verwendet, dass sich aktuell in Version 03 befindet.\footnote{http://tools.ietf.org/html/draft-zyp-json-schema-03} 
+\subsection{Implementierung}
 
-\subsubsection{Schema-Validierung}
+TODO: roadrunner.server
 
-In einem Designdokument können verschiedene Validierungen eingeführt werden. Zusätzlich zu Validierungen der Benutzerrechte werden im Projekt Roadrunner alle Dokumente auf das definierte JSON-Schema validiert. 
-Zur Durchführung der Schema-Validierung wurde ein spezielles Designdokument erzeugt. In diesem Designdokument befinden sich folgende Elemente:
+\subsubsection{JSON und Schema-Validierung}
+Als Dokumentstruktur wird von CouchDB JSON verwendet. Vor der Speicherung eines
+	JSON-Dokumentes in die Datenbank werden die Validierungsmethoden von allen
+	Designdokumenten in der Datenbank aufgerufen. Nur wenn alle Validierungen
+	erfolgreich sind wird das Dokument gespeichert. Obwohl JSON Schemalos ist
+	kann trotzdem eine Schemavalidierung durchgeführt werden. Als Schema wird
+	das JSON-Schema verwendet, dass sich aktuell in Version 03
+	befindet \cite{IETF11}[S. 1]. 
 
-\begin{description}
-\item[validate\_doc\_update.js] Die JavaScript-Methode \texttt{function (newDoc, oldDoc, userCtx )} wird vor der Speicherung von jedem Dokument aufgerufen. In dieser Methode wird die Schema-Validierung durchgeführt. Die Methode besitzt keinen Rückgabewert. Wenn die Methode ohne aulösen einer Exception durchläuft gilt das Dokument für diese Validierungsmethode als valide.
-\item[schema] Die verwendeten Schemas befinden sich in diesem Ordner im JSON-Format
-\item[vendor/json-schema] Zur Durchführung der Validierung wird das Projekt json-schema\footnote{https://github.com/kriszyp/json-schema} verwendet. Bei dem Projekt handelt es sich um eine kleine JavaScript-Klasse, die keine zusätzlichen Abhängigkeiten hat und alle benötigten Funktionalitäten zur Verfügung stellt.
-\end{description}
+In einem Designdokument können verschiedene Validierungen eingeführt werden.
+	Zusätzlich zu Validierungen der Benutzerrechte werden in diesem Projekt alle
+	Dokumente auf das definierte JSON-Schema validiert.
 
-Ein alternatives Validierungsframework wäre das JSON-Schema-Validator-Projekt\footnote{https://github.com/garycourt/JSV.git}. Das JSV-Framework bietet die selben Funktionalitäten wie das json-schema-Projekt. JSV verwendet aber Aufrufe an die Java-Script-Methode \texttt{require(...)}. Diese Methode wurde von der CouchDB-Validierungsmethode überschrieben und dient dort zur Validierung einzelner Elemente in einem JSON-Dokument. Durch das Überschreiben der Methode von CouchDB arbeitet der \texttt{require}-Befehl im JSV-Framework nicht korrekt und somit kann dieses nicht verwendet werden.
+\subsubsection{Designdokumente}
 
-\subsection{Dokumentstruktur}
+TODO
 
-\subsection{Designdokumente}
+\subsubsection{Dokumentänderung - MapReduce}
 
-\subsection{Replizierung}
+\emph{MapReduce} ist ein Framework von Google, dass entwickelt wurde damit sehr große
+	Datenmengen parallel bearbeitet werden können. CouchDB verwendet ebenfalls
+	einen ähnlichen Anstaz um Daten aus der Datenbank zu lesen. Anhand eines
+	Beispieles wird die Funktionsweise von MapReduce nachfolgend erläutert.
 
-\subsection{MapReduce}
+Das Beispiel beantwortet folgende Problemstellung: Welche Gegenstände wurden
+	von einer Transporteinheit (durch das Lesen des Barcodes) eingeladen
+	und sind somit in der Datenbank als geladen gekennzeichnet?
 
-MapReduce ist ein Framework von Google, dass entwickelt wurde damit sehr große Datenmengen parallell bearbeitet werden können. CouchDB verwendet ebenfalls einen MapReduce-Anstaz um Daten aus der Datenbank zu lesen. Anhand eines Beispieles wird die Funktionsweise von MapReduce vorgestellt.
+\paragraph{Map - Phase} Auf jedes Dokument in der Datenbank wird die Map-Methode
+	angewendet. In einer Map-Methode werden Key-Value-Paarungen gebildet. Jedes
+	Dokument in der Datenbank kann eine beliebige Anzahl an Key-Value-Paarungen
+	generieren. Diese Key-Value-Paarungen werden in einem B-Baum (vgl.
+	\cite{Ottmann96}[S. 317-327]) gespeichert. Ändert sich nun ein Dokument müssen
+	nur die entsprechenden Paarungen in	dem B-Baum angepasst werden. 
 
-Das Beispiel beantwortet folgende Problemstellung: Welche Waren wurden gescannt und somit als geladen gekennzeichnet?
+\paragraph{Reduce - Phase} In dieser Phase wird auf jeden Element in dem Baum die
+	Reduce-Methode angewendet. Ziel der Reduce-Methode ist es die Datenmenge zu
+	minimieren. Auf jedes Element kann die Reduce-Methode beliebig oft angewendet
+	werden.
 
-\subsubsection{Map - Phase}
+\subsection{Mögliche Erweiterungen}
 
-Auf jedes Document in der Datenbank wird die Map-Methode angewendet. In einer Map-Methode werden Key-Value-Paarungen gebildet. Jedes Document in der Datenbank kann eine beliebige Anzahl an Key-Value-Paarungen generieren. Diese Key-Value-Paarungen werden in einem B-Tree gespeichert. Ändert sich nun ein Dokument müssen nur die entsprechenden Paarungen in dem B-Tree angepasst werden. 
+TODO
 
-\subsubsection{Reduce - Phase}
+\subsection{Verwendung in einem realen Projekt}
 
-In der Reduce-Phase wird auf jeden Node in dem Tree die Reduce-Methode angewendet. Ziel der Reduce-Methode ist es die Datenmenge zu minimieren. Auf jede Node kann die Reduce-Methode beliebig oft angewendet werden. Daher wird die Reduce und die Rereduce-Phase unterschieden.
-
-\subsection{CouchDB auf Android}
-
-\subsection{Sicherheit}\label{security}
-
-\subsection{CouchApp}
-
+TODO
