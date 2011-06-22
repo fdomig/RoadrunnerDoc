@@ -1,13 +1,26 @@
 \section{Motivation}
 
-In diesem Projekt haben wir uns auf die Entwicklung von Software konzentriert.
-	Hardware sowie entsprechende Sensoren werden simuliert. Wir haben uns in
-	neuen Technologien, teilweise sogar in Beta-Versionen, eingearbeitet und 
-	diese exzessiv in diesem Projekt verwendet.
+Ein Transportüberwachungssystem kann aus mehreren Blickwinkeln betrachtet werden.
+	In diesem Semesterprojekt war für die Erstellung eines Vollständigen
+	Systems zu wenig Zeit vorhanden und somit wurden in diesem Projekt der Fokus
+	auf die Erstellung einer mobilen Applikation, der Repliezrung von Daten auf
+	ein Backendserver sowie die Verwaltung des Systems mit einer Webapplikation
+	gelegt.
+	
+Aus erwähnten zeitlichen Gründen wurde keine eigene Hardware entwickelt und somit
+	die Android Plattform als Host-System für eine mobile Applikation verwendet.
+	Zudem wurden bis auf eine Ausnahme keine realen Sensoren verwendet sondern
+	benötigte Sensoren simuliert.
+
+Dadurch hat sich diese Projekt auf die Entwicklung von Software konzentriert.
+	Wir haben uns in neuen Technologien, teilweise sogar in Beta-Versionen,
+	eingearbeitet und diese exzessiv in diesem Projekt verwendet.
+	
+Auf dem Backendserver wurde mit CouchDB ein unkonventioneller Ansatz der
+	Datenpersistierung gewählt. Um die Verwaltung von Aufträgen (Lieferungen)
+	wurde eine Webapplikation erstellt.
 
 Als Softwareentwicklungsprozess wurde \emph{Test-Driven-Development} gewählt.
 	Hierzu wurden nahezu alle entwickelten Komponenten mit \emph{Unit-Tests}
 	getestet sowie wenn möglich auf einem \emph{Continius-Integration}-Server
 	bei jeder Änderung automatisiert getestet.
-	
-TODO: mehr Inhalt

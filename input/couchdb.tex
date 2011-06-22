@@ -34,20 +34,29 @@ In einem Designdokument können verschiedene Validierungen eingeführt werden.
 	Zusätzlich zu Validierungen der Benutzerrechte werden in diesem Projekt alle
 	Dokumente auf das definierte JSON-Schema validiert.
 
+\subsection{Datenverteilung}
+
+Daten können auf unterschiedliche Arten in einem System verteilt werden. Eine
+	Möglichkeit ist die Daten aus der mobilen Datenbankinstanz in die Applikation
+	zu lesen und auf der Applikationsschicht die anfallenden Daten an die
+	Master-Datenbank zu senden.
+
+Mit CouchDB wird die Synchronisierung der Daten in diesem Projekt von den
+	Datenbankinstanzen durchgeführt. Diese Synchronisierung nennt sich hier
+	Replizierung. Bei dieser kann explizit angegeben werden, welche Daten
+	in jeweils welche Richtung synchronisiert werden.
+
 \subsubsection{Designdokumente}
 
 TODO
 
 \subsubsection{Dokumentänderung - MapReduce}
 
-\emph{MapReduce} ist ein Framework von Google, dass entwickelt wurde damit sehr große
+\emph{MapReduce}\footnote{vgl. \url{http://labs.google.com/papers/mapreduce-osdi04.pdf}}
+	ist ein Framework von Google, dass entwickelt wurde damit sehr große
 	Datenmengen parallel bearbeitet werden können. CouchDB verwendet ebenfalls
 	einen ähnlichen Anstaz um Daten aus der Datenbank zu lesen. Anhand eines
 	Beispieles wird die Funktionsweise von MapReduce nachfolgend erläutert.
-
-Das Beispiel beantwortet folgende Problemstellung: Welche Gegenstände wurden
-	von einer Transporteinheit (durch das Lesen des Barcodes) eingeladen
-	und sind somit in der Datenbank als geladen gekennzeichnet?
 
 \paragraph{Map - Phase} Auf jedes Dokument in der Datenbank wird die Map-Methode
 	angewendet. In einer Map-Methode werden Key-Value-Paarungen gebildet. Jedes
