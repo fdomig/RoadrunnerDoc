@@ -22,19 +22,26 @@ vor dem Ausladevorgang der Transporteinheit stattfinden.
 \paragraph{Lösungsansatz:}
 Um dieses Problem zu lösen muss relative Zeit eingeführt und synchronisiert
 werden. Für die Zeitsynchronisierung können bekannte Algorithmen für verteilte
-Systeme eingeführt werden. Mögliche Algorithmen sind
+Systeme verwendet werden. Mögliche Algorithmen sind Christian's Algorithm oder Berkley Algorithm\footnote{$http://en.wikipedia.org/wiki/Clock_synchronization$}.
 \par
+Im Projekt Roadrunner wurde Christian's Algorithmus implementiert. Jeder Client misst seine Differenz zur Serverzeit und verwendet diese zur Erzeugung der Zeitstempel. Somit können die unterschiedlichen Uhren bis zu einer gewünschten Genauigkeit synchronisiert werden.
 
-\paragraph{TODO:}
-UPV distributed Clocks .. algorithmen herausfinden und oben einfügen\\ 
+Grundsätzlicher Ablauf zur Ermittlung der Zeitdifferenz ist folgender:
+\begin{enumerate}
+\item Client erzeugt einen Zeitstempel mit der letzten bekannten Differenz zur Serverzeit.
+\item Client sendet eine Anfrage für die Serverzeit an den Server.
+\item Server antwortet mit seiner Zeit.
+\item Client erzeugt einen zweiten Zeitstempel.
+\item Ist die RoundTrip-Zeit klein genug werden die Zeitstempel von Client und Server verglichen.
+\item Überschreitet die Zeitdifferenz einen Schwellwert wird auf dem Client die neue Zeitdifferenz gesetzt.
+\end{enumerate}
 
-	Christian's Algorithm, Berkley Algorithm, 
-	$http://en.wikipedia.org/wiki/Clock_synchronization$
 \par
-
-Grundsätzlich müssen diese Probleme berücksichtigt werden. In unserem
-Projekt werden die erwähnten Lösungen aus zeitlichen Gründen und anderer
-Zielsetzung nicht implementiert.
+Die Uhren werden bis zu einer gewählten Genauigkeit miteinander synchronisiert. Beim Projekt Roadrunner wurde die Genauigkeit mit 5 Sekunden gewählt. Dies bedeutet, wenn der Client seinen Zeitstempel mit dem von dem Server vergleicht und die Differenz die Genauigkeit überschreitet, dann ermittelt der Client die neue Differenz und verwendet diese zur Erzeugung der nächsten Zeitstempel. Die Synchronisation bis zu einer Genauigkeit von 5 Sekunden wurde gewählt, da ein Umladevorgang sicher länger als 5 Sekunden dauert. Eine zu kleine Genauigkeit hätte zur Folge, dass durch Abweichende RoundTrip-Zeiten ständig die Uhr neu gestellt würde und unnötig viele Zeitsynchronisierungseinträge erstellt würden.
+\par
+Bei jeder Zeitsynchronisierung wird eine Log-Eintrag für alle geladenene Items erzeugt. Dadurch ist in der History eines Items ersichtlich wann eine Zeitsynchronisierung des Client durchgeführt wurde und welche Log-Einträge einen von der Serverzeit abweichenden Zeitstempel haben.
+\par
+Bei der Zeitsynchronisierung ist die RoundTrip-Zeit ebenfalls von großer Bedeutung. Ist die RoundTrip-Zeit zu groß wird der Zeitstempel vom Server verworfen und keine Synchronisierung durchgeführt. Nur wenn die RoundTrip-Zeit hinreichend klein ist, kann eine sinnvolle Zeitdifferenz der Zeitstempel ermittelt werden. Für die größte noch erlaubte RoundTrip-Zeit wurde 2 Sekunden gewählt. Dies entspricht etwa der halben Genauigkeit und bei keiner zu großen Netzauslastung sollte ein Request in dieser Zeit auch abarbeitbar sein.
 
 \subsection{Zugriffskontrolle}
 
