@@ -3,4 +3,5 @@
 *.aux
 *.out
 *.synctex.gz
+*.tex~
 .DS_Store
