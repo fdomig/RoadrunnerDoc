@@ -22,16 +22,16 @@ Mit Android als Grundlage können gleich mehrere Aspekte abgedeckt werden. Jedes
 	nur telefonisch erreichbar sondern gleichzeitig kann die komplette
 	Transportüberwachung damit erreicht werden.
 	
-Mit der entwickelten Applikation lassen sich Gegenstände einladen indem diese
+Mit der entwickelten Applikation lassen sich Gegenstände einladen, indem diese
 	via Barcode in das System übernommen werden. Ab diesem Zeitpunkt wird dieser
 	Gegenstand ständig überwacht und via CouchDB (siehe Abschnitt~\ref{subsec:couchdb})
 	mit dem Backensystem synchronisiert. Auf der Webapplikation (siehe
 	Abschnitt~\ref{subsec:webapplication}) können die Produkte bzw. die Lieferung,
-	welche aus mehreren Produkten bestehen kann nun auf einer Karte	nachverfolgt
-	werden sowie die jeweiligen Daten der Temperatursensoren (siehe
-	Abschnitt~\ref{subsec:nodejs}) bis zum ausladen überprüft werden.
+	welche aus mehreren Produkten bestehen kann, nun auf einer Karte
+	nachverfolgt werden, sowie die jeweiligen Daten der Temperatursensoren
+	(siehe Abschnitt~\ref{subsec:nodejs}) bis zum Ausladen überprüft werden.
 		
-Auch in einem realen Szenario lässt sich Android hervorragend einsetzten. Es ist
+Auch in einem realen Szenario lässt sich Android hervorragend einsetzen. Es ist
 	mittlerweile in Version~3.1 (15. Juni 2011) verfügbar und weit verbreitet.
 	Die von Google bereitgestellten \emph{Google Apps for Business}\footnote{vgl.
 	\url{http://www.google.com/apps/intl/de/business/index.html}} können die
@@ -85,12 +85,12 @@ Mit diesem Framework lassen sich einfache Webapplikationen sehr effizient in ein
 	jeweiligen Schichten sowie der leichten Testbarkeit ist Silex für dieses
 	Projekt hervorragend geeignet.
 	
-Für ein Szenario in der Realität kann Silex sehr gut eingesetzt werden solange das
+Für ein Szenario in der Realität kann Silex sehr gut eingesetzt werden, solange das
 	System einfach und klein ist. Mit mehr in dem Backendsystem implementierten
-	Usecases sollte ein Wechsel zu Symfony2 in Betracht gezogen werden, da sich
-	damit deutlich komplexere Anwendungsfälle implementieren lassen. Ein solcher
+	Anwendungsfällen sollte ein Wechsel zu Symfony2 in Betracht gezogen werden, da
+	sich damit deutlich komplexere Anwendungsfälle implementieren lassen. Ein solcher
 	Wechsel ist durch die bereits in Silex verwendeten Komponenten von Symfony2
-	leicht zu vollziehen, die bereits bestehenden Komponenten können
+	leicht zu vollziehen. Die bereits bestehenden Komponenten können
 	weiterverwendet werden.
 	
 In Kapitel~\ref{sec:webapplication} wird eine detaillierte des Backendsystems
@@ -103,8 +103,8 @@ Für dieses Projekt wurden Temperatursensoren sowie Zeitsynchronisation mit
 	Hilfe von \emph{Node.js}\footnote{vgl. \url{http://nodejs.org/}} simuliert.
 	Es wurde in diesem Projekt das Augenmerk vor allem auf die mobile Applikation
 	mit Android unter Verwendung einer verteilten Datenbank sowie der
-	Webapplikation gelegt. Somit wurden	bis auf	Positionssensoren (GPS) die
-	keine richtigen Sensoren verwendet.
+	Webapplikation gelegt. Somit wurden	bis auf	Positionssensoren (GPS) keine
+	realen Sensoren verwendet.
 
 Node.js ist ein ereignisgesteuertes I/O Framework für die V8 JavaScript
 	Engine \cite{Wikipedia10a}. Diese wurde in C++ sowie JavaScript entwickelt
