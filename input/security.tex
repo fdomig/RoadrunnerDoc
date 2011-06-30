@@ -1,17 +1,18 @@
 \section{Applikationssicherheit}
 \label{sec:security}
 
+TODO: einführender absatz in app sicherheit
+
 \subsection{Zeitsynchronisierung}
 \label{subsec:timesync}
 
 In diesem Abschnitt werden Probleme besprochen, die durch fehlerhafte respektive
-	mangelhafte Zeitsynchronisierung bzw. Verbindungsabbrüche entstehen
-	können.
+	mangelhafte Zeitsynchronisierung entstehen können.
 
 \paragraph{Problem durch falsche Zeitstempel bei Logeinträgen} Betrachtet wird das
 	Szenario ``Umladevorgang eines Produktes''. Das mobile Gerät der Transporteinheit
 	wird benutzt um den Ausladevorgang aus einem Container im System zu verarbeiten.
-	Mit dem scannen des Produkts wird auf dem mobilen Gerät der Transporteinheit ein
+	Mit dem Scannen des Produkts wird auf dem mobilen Gerät der Transporteinheit ein
 	Logeintrag in dessen lokale Datenbank erstellt. Genauso wird beim darauffolgenden 
 	Ladevorgang der Umladestation ein Logeintrag auf dessen Gerät erstellt. Wenn das
 	System mit absoluter Zeit arbeitet und die Uhrzeit des Geräts der Transporteinheit
@@ -50,12 +51,12 @@ Die Systemzeit werden bis zu einer gewählten Genauigkeit miteinander synchronis
 	Differenz die Genauigkeit überschreitet, dann ermittelt der Client die neue
 	Differenz und verwendet diese zur Erzeugung der nächsten Zeitstempel. Die
 	Synchronisation bis zu einer Genauigkeit von 5 Sekunden wurde gewählt, da ein
-	Umladevorgang sicher länger als 5 Sekunden dauert. Eine zu kleine Genauigkeit
+	Umladevorgang länger als fünf Sekunden dauert. Eine zu kleine Genauigkeit
 	hätte zur Folge, dass durch Abweichende RoundTrip-Zeiten ständig die Uhr neu
-	gestellt würde und unnötig viele Zeitsynchronisierungseinträge erstellt würden.
+	gestellt würde und unnötig viele Zeitsynchronisierungs-Einträge erstellt würden.
 	
-Bei jeder Zeitsynchronisierung wird eine Log-Eintrag für alle geladenene Items erzeugt.
-	Dadurch ist in der History eines Items ersichtlich wann eine Zeitsynchronisierung
+Bei jeder Zeitsynchronisierung wird eine Log-Eintrag für alle geladenenen Produkte erzeugt.
+	Dadurch ist in der History eines Produkts ersichtlich wann eine Zeitsynchronisierung
 	des Client durchgeführt wurde und welche Log-Einträge einen von der Serverzeit
 	abweichenden Zeitstempel haben.
 
@@ -63,9 +64,9 @@ Bei der Zeitsynchronisierung ist die RoundTrip-Zeit ebenfalls von großer Bedeut
 	Ist die RoundTrip-Zeit zu groß wird der Zeitstempel vom Server verworfen und keine
 	Synchronisierung durchgeführt. Nur wenn die RoundTrip-Zeit hinreichend klein ist,
 	kann eine sinnvolle Zeitdifferenz der Zeitstempel ermittelt werden. Für die größte
-	noch erlaubte RoundTrip-Zeit wurde 2 Sekunden gewählt. Dies entspricht etwa der halben
-	Genauigkeit und bei keiner zu großen Netzauslastung sollte ein Request in dieser Zeit
-	auch abarbeitbar sein.
+	noch erlaubte RoundTrip-Zeit wurde zwei Sekunden gewählt. Dies entspricht etwa
+	der halben Genauigkeit und bei keiner zu großen Netzauslastung sollte eine Anfrage
+	in dieser Zeit auch bearbeitbar sein.
 
 \subsection{Zugriffskontrolle}
 
@@ -81,7 +82,7 @@ Auf einer Datenbank können in CouchDB Administratoren und normale Benutzer defi
 	
 \begin{description}
 	\item[Administrator] Ein Administrator hat sämtliche Rechte auf der Datenbank.
-		Er kann die zudem die Datenbank löschen, Designdokumente verändern oder
+		Er kann die Datenbank löschen, Designdokumente verändern oder
 		Benutzerrechte ändern.
 	\item[Benutzer] Ein Benutzer hat lesenden und schreibenden Zugriff auf
 		alle Dokumente bis auf die Designdokumente.
@@ -92,17 +93,18 @@ Auf einer Datenbank können in CouchDB Administratoren und normale Benutzer defi
 \begin{itemize}
 	\item[Namen] Ein CouchDB-Benutzer muss einen eindeutigen Namen im Format
 		$org.couchdb.user:[username]$ haben. Die Benutzer werden in einer separaten
-		Datenbank mit dem Namen $\_users$ definiert. Wenn der Benutzer dieser Liste
+		Datenbank mit dem Namen $\_users$ definiert. Wenn der Benutzer der Namensliste
 		hinzugefügt wird, dann besitzt er die entsprechenden Rechte.
 		
 	\item[Rollen] Ein Benutzer kann verschiedene Rollen besitzen. Wenn eine seiner
-		Rollen in dieser Liste aufgeführt wird, hat er die entsprechenden Rechte. 
+		Rollen in der Liste der Rollen aufgeführt wird, hat er die entsprechenden
+		Rechte.
 \end{itemize}
 
 \subsubsection{Rollen in diesem System}
 
 Einem Benutzer können keine bis mehrere Rollen zugewiesen werden. Bei jeder Veränderung
-	von Dokumenten auf dem Backendsystem wird von CouchDB eine Benutzerauthentifizierung
+	von Dokumenten wird von CouchDB eine Benutzerauthentifizierung
 	durchgeführt. Bei dieser Benutzerauthentifizierung wird das Zugriffsrecht auf die
 	Datenbank überprüft und zudem eine Validierung durchgeführt. Bei der Validierung
 	werden alle definierten Validierungsmethoden aufgerufen. Nur wenn alle Validierungen
@@ -116,11 +118,12 @@ Einem Benutzer können keine bis mehrere Rollen zugewiesen werden. Bei jeder Ver
 	\item[Office] Ein Benutzer der Gruppe Office arbeitet mit dem Backendsystem von
 		Roadrunner. Dieser Benutzer arbeitet über die Webapplikation mit diesem System.
 	\item[Driver] Ein Benutzer der Gruppe Driver ist ein Fahrer. Er arbeitet auf dem
-		Androidsystem mit dem System. Auf dem Androidsystem arbeitet er als Admin mit
-		der Datenbank. Eine Einschränkung der Benutzerrechte auf dem Android Plattform 
-		ist nicht notwendig, da die Benutzerauthentifizierung bei der Replizierung der
-		Daten von dem Androidsystem auf das Backendsystem durchgeführt wird. Ein Fahrer
-		kann nur Daten replizieren für die er die entsprechenden Rechte besitzt.
+		Androidsystem mit der Roadrunner Applikation. Auf dem Androidsystem arbeitet
+		er als Admin mit der Datenbank. Eine Einschränkung der Benutzerrechte auf der
+		Android Plattform ist nicht notwendig, da die Benutzerauthentifizierung bei der
+		Replizierung der Daten von dem Androidsystem auf das Backendsystem durchgeführt
+		wird. Ein Fahrer kann nur Daten replizieren für die er die entsprechenden Rechte
+		besitzt.
 \end{description}
 
 \noindent In den Validierungsmethoden werden die entsprechenden Rechtevalidierungen

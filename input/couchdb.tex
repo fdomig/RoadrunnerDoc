@@ -19,8 +19,6 @@ In diesem Projekt wurde CouchDB eingesetzt, um ein relativ neues Gebiet der
 
 \subsection{Implementierung}
 
-TODO: roadrunner.server
-
 \subsubsection{JSON und Schema-Validierung}
 Als Dokumentstruktur wird von CouchDB JSON verwendet. Vor der Speicherung eines
 	JSON-Dokumentes in die Datenbank werden die Validierungsmethoden von allen
@@ -46,10 +44,6 @@ Mit CouchDB wird die Synchronisierung der Daten in diesem Projekt von den
 	Replizierung. Bei dieser kann explizit angegeben werden, welche Daten
 	in jeweils welche Richtung synchronisiert werden.
 
-\subsubsection{Designdokumente}
-
-TODO
-
 \subsubsection{Dokumentänderung - MapReduce}
 
 \emph{MapReduce}\footnote{vgl. \url{http://labs.google.com/papers/mapreduce-osdi04.pdf}}
@@ -71,8 +65,22 @@ TODO
 
 \subsection{Mögliche Erweiterungen}
 
-TODO
+Mögliche Erweiterungen wären zusätzliche Views mit denen  bestimmte Informationen
+	aus der Datenbank gelesen werden können. Im Projekt umgesetzt ist eine View,
+	die den Status eines Produktes ermittelt (geladen, geliefert,...). 
+	
+Wichtig wäre auch eine View, die den Status einer ganzen Lieferung ermittelt oder
+	eine View zur Ermittlung an welchen Positionen sich die einzelnen Fahrzeuge
+	gerade befinden, sodass die Fahrzeugpositionen z.B. auf einer Karte dargestellt
+	werden könnten.
 
 \subsection{Verwendung in einem realen Projekt}
 
-TODO
+Bei der Umsetzung in einem realen System liegen möglicherweise bereits Daten des
+ 	Unternehmens vor. Da relationale Datenbanken weit verbreitet sind, müssen die
+	bereits vorhandenen Daten per Importer in CouchDB übertragen werden.
+
+Weiters muss die Datenbank per Proxy abgesichert werden, sodass über das Internet
+	nur über klar definierte Schnittstellen auf die Datenbank zugegriffen werden
+	kann. Die externe Erreichbarkeit der Datenbank ist notwendig, da die mobile
+	Android-Applikation die Datenbank erreichen können muss um Dokumente zu replizieren.
