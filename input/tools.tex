@@ -10,10 +10,51 @@ In diesem Projekt wurden mehrere projektunterstützende Werkzeuge verwendet.
 \subsection{Versionskontrollsystem GIT mit github.com}
 \label{subsec:git}
 
-TODO
+Git ist ein verteiltes Revisions-Kontroll-System mit einem Schwerpunkt auf
+	Geschwindigkeit. Git wurde ursprünglich entworfen und
+	entwickelt von Linus Torvalds für Linux-Kernel-Entwicklung \cite{Torvalds07}.
+	Jedes Git-Arbeitsverzeichnis ist ein vollwertiges \emph{Repository} mit
+	kompletter Historie und vollständige Überarbeitung Tracking-Fähigkeiten,
+	nicht abhängig von Netzwerkzugang oder einen zentralen Server. Git aktuellen
+	Software-Wartung wird durch Junio Hamano betreut. Git ist freie Software unter
+	den Bedingungen der GNU General Public License Version 2 verteilt.
+	
+In diesem Projekt wurde Git für alle Teile des Projekts eingesetzt. Es wurde sowohl
+	die CouchDB Applikation, die Android Applikation, die Webapplikation sowie die
+	Dokumentation via Git verwaltetet und alle Projektmitglieder konnten in alle
+	Teile einsehen sowie mitarbeiten.
+	
+Um Git auch Online zu synchronisieren, wurde in diesem Projekt
+	gihub.com\footnote{vgl. \url{http://github.com}} verwendet. Via github ist es
+	möglich, zusätzliche projektunterstützende Werkzeuge (wie z.B. Issue-Tracking,
+	Wiki, etc.) zu verwenden.
 
 \subsection{Continious Integration mit Jenkins}
 \label{subsec:ci}
 
-TODO
+Jenkins, früher bekannt als Hudson bekannt, ist eine Open-Source-Continuous
+	Integration (CI)-Tool, welches in Java geschrieben ist. Jenkins bietet
+	kontinuierliche Integrations-Services für Software-Entwicklung an. Vor
+	allem in der Programmiersprache Java. Es ist ein server-basiertes System
+	mit einem Servlet-Container wie Apache Tomcat. Es unterstützt SCM-Tools
+	einschließlich CVS, Subversion, Git und Clearcase und Apache Ant und Apache
+	Maven basierende Projekte, sowie beliebige Shell-Skripte und
+	Windows-Batch-Befehle auszuführen. Jenkins ist freie Software und wird
+	unter der MIT-Lizenz veröffentlicht.
+	
+In diesem Projekt wurde sowohl die Android Applikation (Java) sowie die
+	Webapplikation automatisiert via Jenkins getestet. Bei jedem neuen
+	Commit, welcher zu github synchronisiert wurde, wird automatisiert
+	ein Checkout von Jenkins in ein neues Verzeichnis erstellt. Danach
+	wird das jeweilige Ant-Build-Script $build.xml$ ausgeführt und die
+	Software kompiliert. Anschließend werden die definierten
+	Analysewerkzeuge mit einer jeweiligen Konfiguration ausgeführt.
+	
+Bei der Android Applikation wurden JUnit\footnote{vgl.
+	\url{http://www.junit.org/}} Tests ausgeführt.
+	
+Bei der Webapplikation wurden PHPUnit\footnote{vgl.
+	\url{http://www.phpunit.de/}}, PHP-Check-Style, PHP-Mess-Detector sowie
+	PHP-Copy-Paste-Detector verwendet um die Qualität zu überprüfen.
+	
 
