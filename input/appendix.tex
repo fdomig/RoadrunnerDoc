@@ -36,7 +36,7 @@
 
 
 
-	\subsubsection{Datenbankinstanzen}
+\subsection{Datenbankinstanzen}
 	Anfallende Daten müssen persistent gespeichert werden. Diese Speicherung wird in eine Datenbank durchgeführt. Genauer betrachtet werden die Daten in einer Instanz einer Datenbank gespeichert. Es gilt zu unterscheiden ob eine Instanz einer Datenbank verwendet wird oder mehrere Instanzen verwendet werden und diese synchron gehalten werden.
 
 	\begin{description}
@@ -88,20 +88,17 @@
 	  	\subitem registriert Pakete im System
 	  	\subitem klebt QR-Code auf Pakete
 
-		\item Logister plant und erstellt Lieferungen (neue Auftragsnummer wird
-		generiert) \subitem wählt Pakete aus (können mit Sensoren bestückt sein)
-			\subitem wählt Fahrer aus 
-			\subitem wählt Transportmittel (können mit Sensoren bestückt sein) für
-			Lieferungen aus
+		\item Logistik plant und erstellt Lieferungen (neue Auftragsnummer wird
+			generiert)
+			\subitem wählt Pakete aus
+			\subitem wählt Transportmittel für Lieferungen aus
 			\subitem trägt Zielort und Auftraggeber ein
 
 	  \item Transporteur
 	  	\subitem holt oder hat Device mit Roadrunner App
 	  	\subitem loggt sich im Roadrunner System ein
 	  		\subsubitem mit Benutzerdaten wird sein/e aktuelle/r Auftrag/Lieferung aufs
-	  		Device synchronisiert ODER 
-	  		\subsubitem scannt Pakete und lädt sie in das vom Logistiker ausgwählte
-	  		Transportmittel
+	  		Gerät synchronisiert ODER 
 	\end{itemize}
 
 	\paragraph{Daten-Synchronisierung}
@@ -113,9 +110,9 @@
 		Die Daten-Synchronisierung oder Replizierung wird durch das Einloggen im
 		System angestoßen. Das mobile Gerät erhält folgende Information:
 		\begin{itemize}
-		  \item Adressen der Sensoren, die das Gerät überwachen sollte
-		  \item alle Produkte, Pakete der aktuellen Lieferung, sowie Zielort, etc.
-		  \item Überwachungs-Thresholds der Pakete
+		  \item Adressen der Sensoren, die das Gerät überwachen soll
+		  \item alle geladenen Produkte, Pakete der aktuellen Lieferung, sowie
+				Zielort, etc.
 		\end{itemize}
 	\par
 
