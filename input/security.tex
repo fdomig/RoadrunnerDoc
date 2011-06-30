@@ -1,9 +1,21 @@
 \section{Applikationssicherheit}
 \label{sec:security}
 
-Dieses Kapitel behandelt die Zeitsynchronisierung sowie die Zugriffskontrolle für \emph{CouchDB}. Mit Hilfe der Zeitsynchronisierung wird 
-die Systemzeit zwischen Android Smartphone und Backendsystem abgeglichen um eine einheitliche Zeit gewährleistet zu können. 
-Die Zugriffskontrolle für \emph{CouchDB} dient als Sicherheitsmechanismus um die Daten vor unbefugten Zugriffen zu schützen.
+Die Anforderungen an die Sicherheit einer Applikation (Programm) sollen bereits
+	zu Beginn der Entwicklung ermittelt und abgestimmt werden. Eine nachträgliche
+	Implementierung von Sicherheitsmassnahmen ist bedeutend teurer und bietet im
+	Allgemeinen weniger Schutz als Sicherheit, die von Beginn an in den
+	Systementwicklungsprozess oder in den Auswahlprozess für ein Produkt
+	integriert wurde.
+	
+In diesem Projekt werden die Zeitsynchronisierung sowie die Zugriffskontrolle für
+	CouchDB unter dem Aspekt der Applikationssicherheit betrachtet.
+	
+Mit Hilfe der Zeitsynchronisierung wird die Systemzeit zwischen Android Smartphone
+	und Backendsystem abgeglichen um eine einheitliche Zeit gewährleisteten zu können.
+
+Die Zugriffskontrolle für CouchDB dient als Sicherheitsmechanismus um die Daten vor
+	Zugriffen Dritter zu schützen.
 
 \subsection{Zeitsynchronisierung}
 \label{subsec:timesync}
@@ -24,7 +36,7 @@ In diesem Abschnitt werden Probleme besprochen, die durch fehlerhafte respektive
 
 \paragraph{Lösungsansatz} Um dieses Problem zu lösen muss relative Zeit eingeführt und
 	synchronisiert werden. Für die Zeitsynchronisierung können bekannte Algorithmen
-	für verteilte Systeme eingeführt werden. Mögliche Algorithmen sind Christian's
+	für verteilte Systeme verwendet werden. Mögliche Algorithmen sind Christian's
 	Algorithmus \cite{Christian89}[S. 146-158] oder Berkley Algorithmus\footnote{vgl.
 	\url{http://ieeexplore.ieee.org/xpl/freeabs_all.jsp?&arnumber=29484}}.
 
@@ -33,77 +45,25 @@ In diesem Projekt wurde Christian's Algorithmus implementiert. Jeder Client miss
 	können die unterschiedlichen Uhren bis zu einer gewünschten Genauigkeit
 	synchronisiert werden.
 
-Grundsätzlicher Ablauf zur Ermittlung der Zeitdifferenz ist folgender:
-
-\begin{enumerate}
-	\item Client erzeugt einen Zeitstempel mit der letzten bekannten
-		Differenz zur Serverzeit.
-	\item Client sendet eine Anfrage für die Serverzeit an den Server.
-	\item Server antwortet mit seiner Zeit.
-	\item Client erzeugt einen zweiten Zeitstempel.
-	\item Ist die RoundTrip-Zeit klein genug werden die Zeitstempel
-		von Client und Server verglichen.
-	\item Überschreitet die Zeitdifferenz einen Schwellwert wird auf
-		dem Client die neue Zeitdifferenz gesetzt.
-\end{enumerate}
-
-Die Systemzeit werden bis zu einer gewählten Genauigkeit miteinander synchronisiert.
-	In diesem Projekt wurde die Genauigkeit mit 5 Sekunden gewählt. Dies bedeutet,
-	wenn der Client seinen Zeitstempel mit dem von dem Server vergleicht und die
-	Differenz die Genauigkeit überschreitet, dann ermittelt der Client die neue
-	Differenz und verwendet diese zur Erzeugung der nächsten Zeitstempel. Die
-	Synchronisation bis zu einer Genauigkeit von 5 Sekunden wurde gewählt, da ein
-	Umladevorgang länger als fünf Sekunden dauert. Eine zu kleine Genauigkeit
-	hätte zur Folge, dass durch Abweichende RoundTrip-Zeiten ständig die Uhr neu
-	gestellt würde und unnötig viele Zeitsynchronisierungs-Einträge erstellt würden.
-	
-Bei jeder Zeitsynchronisierung wird eine Log-Eintrag für alle geladenenen Produkte erzeugt.
-	Dadurch ist in der History eines Produkts ersichtlich wann eine Zeitsynchronisierung
-	des Client durchgeführt wurde und welche Log-Einträge einen von der Serverzeit
-	abweichenden Zeitstempel haben.
-
-Bei der Zeitsynchronisierung ist die RoundTrip-Zeit ebenfalls von großer Bedeutung.
-	Ist die RoundTrip-Zeit zu groß wird der Zeitstempel vom Server verworfen und keine
-	Synchronisierung durchgeführt. Nur wenn die RoundTrip-Zeit hinreichend klein ist,
-	kann eine sinnvolle Zeitdifferenz der Zeitstempel ermittelt werden. Für die größte
-	noch erlaubte RoundTrip-Zeit wurde zwei Sekunden gewählt. Dies entspricht etwa
-	der halben Genauigkeit und bei keiner zu großen Netzauslastung sollte eine Anfrage
-	in dieser Zeit auch bearbeitbar sein.
+Die Systemzeit wird bis zu einer gewählten Genauigkeit synchronisiert.
 
 \subsection{Zugriffskontrolle}
 
-Zur Umsetzung des Rechtesystems von Roadrunner werden verschiedene Benutzergruppen
-	eingeführt. Die Rechte werden einerseits direkt auf der Datenbank definiert und
-	zudem noch über Validierungsfunktionen umgesetzt. Die Benutzerauthentifizierung
-	wird von CouchDB durchgeführt.
+Die Benutzerrechte in diesem Projekt werden mit verschiedene Benutzergruppen abgebildet.
+	Die Benutzerauthentifizierung wird von CouchDB durchgeführt.
 
 \subsubsection{Administratoren und System-Benutzer}
 
 Auf einer Datenbank können in CouchDB Administratoren und normale Benutzer definiert
-	werden.
+	werden.	
 	
-\begin{description}
-	\item[Administrator] Ein Administrator hat sämtliche Rechte auf der Datenbank.
-		Er kann die Datenbank löschen, Designdokumente verändern oder
-		Benutzerrechte ändern.
-	\item[Benutzer] Ein Benutzer hat lesenden und schreibenden Zugriff auf
-		alle Dokumente bis auf die Designdokumente.
-\end{description}
+\paragraph{Administrator} Ein Administrator hat sämtliche Rechte auf der Datenbank.
+	Er kann die Datenbank löschen, Designdokumente verändern oder Benutzerrechte ändern.
+	
+\paragraph{Benutzer} Ein Benutzer hat lesenden und schreibenden Zugriff auf
+	alle Dokumente bis auf die Designdokumente.
 
-\noindent Ein Benutzer kann über 2 verschiedene Arten einer Gruppe zugeordnet werden:
-
-\begin{itemize}
-	\item[Namen] Ein CouchDB-Benutzer muss einen eindeutigen Namen im Format
-		$org.couchdb.user:[username]$ haben. Die Benutzer werden in einer separaten
-		Datenbank mit dem Namen $\_users$ definiert. Wenn der Benutzer der Namensliste
-		hinzugefügt wird, dann besitzt er die entsprechenden Rechte.
-		
-	\item[Rollen] Ein Benutzer kann verschiedene Rollen besitzen. Wenn eine seiner
-		Rollen in der Liste der Rollen aufgeführt wird, hat er die entsprechenden
-		Rechte.
-\end{itemize}
-
-\subsubsection{Rollen in diesem System}
+\subsubsection{Rollen im System}
 
 Einem Benutzer können keine bis mehrere Rollen zugewiesen werden. Bei jeder Veränderung
 	von Dokumenten wird von CouchDB eine Benutzerauthentifizierung
@@ -111,39 +71,3 @@ Einem Benutzer können keine bis mehrere Rollen zugewiesen werden. Bei jeder Ver
 	Datenbank überprüft und zudem eine Validierung durchgeführt. Bei der Validierung
 	werden alle definierten Validierungsmethoden aufgerufen. Nur wenn alle Validierungen
 	gültig sind wird die gewünschte Änderung an den Dokumenten durchgeführt.
-	
-\noindent Im diesem Projekt wurden drei verschiedenen Rollen definiert:
-
-\begin{description}
-	\item[Admin] Ein Administrator hat sämtliche Rechte auf der Datenbank. Diese
-		Rolle ist ausschließlich für Administratoren vorgesehen.
-	\item[Office] Ein Benutzer der Gruppe Office arbeitet mit dem Backendsystem von
-		Roadrunner. Dieser Benutzer arbeitet über die Webapplikation mit diesem System.
-	\item[Driver] Ein Benutzer der Gruppe Driver ist ein Fahrer. Er arbeitet auf dem
-		Androidsystem mit der Roadrunner Applikation. Auf dem Androidsystem arbeitet
-		er als Admin mit der Datenbank. Eine Einschränkung der Benutzerrechte auf der
-		Android Plattform ist nicht notwendig, da die Benutzerauthentifizierung bei der
-		Replizierung der Daten von dem Androidsystem auf das Backendsystem durchgeführt
-		wird. Ein Fahrer kann nur Daten replizieren für die er die entsprechenden Rechte
-		besitzt.
-\end{description}
-
-\noindent In den Validierungsmethoden werden die entsprechenden Rechtevalidierungen
-	durchgeführt. In Tabelle \ref{tab:rechte} sind die Berechtigungen aufgelistet.
-	Ein \textbf{+} bedeutet, dass der Benutzer die entsprechende Berechtigung besitzt.
-
-\begin{table}[h]
-	\begin{tabular}{lccc}
-		& \textbf{Driver} & \textbf{Office} & \textbf{Admin} \\
-		Benutzerrechte ändern & - & - & + \\
-		Designdokumente ändern & - & - & + \\
-		Logeinträge anlegen & + & + & + \\
-		Logeinträge ändern & - & - & + \\
-		Logeinträge löschen & - & - & + \\
-		Andere Dokumente anlegen & - & + & + \\
-		Andere Dokumente ändern & - & + & + \\
-		Andere Dokumente löschen & - & + & +
-	\end{tabular}
-	\caption{Benutzerrechte}
-	\label{tab:rechte}
-\end{table}

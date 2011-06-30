@@ -1,7 +1,7 @@
 \section{Webapplikation als Backendsystem}
 \label{sec:webapplication}
 
-Als unterstützendes Backendsystem wurde in diesem Projekt eine Webapplikation
+Als unterstützendes Backendsystem wird in diesem Projekt eine Webapplikation
 	erstellt. Hiermit ist es möglich, eine Lieferung mit entsprechenden
 	Gegenständen zu erstellen. Nach erfolgreichem Erstellen einer Lieferung
 	kann diese auf einer Karte nachverfolgt werden. Gleichzeitig kann in
@@ -9,22 +9,22 @@ Als unterstützendes Backendsystem wurde in diesem Projekt eine Webapplikation
 
 \subsection{Implementierung}
 
-Das Backendsystem wurde in der Programmiersprache \emph{PHP}\footnote{vgl.
+Das Backendsystem ist in der Programmiersprache \emph{PHP}\footnote{vgl.
 	\url{http://www.php.net}} implementiert. PHP ist eine dynamische
 	Skriptsprache, die speziell für den Einsatz auf Webservern entwickelt
-	wurde. Zum schnelleren Entwickeln, wurden mehrere Frameworks zur
+	wurde. Zum schnelleren Entwickeln, werden mehrere Frameworks zur
 	Unterstützung verwendet.
 	
-\subsubsection{Das Silex Framework}
+\subsubsection{Silex Framework}
 \emph{Silex}\footnote{vgl. \url{http://silex-project.org/}} ist ein auf
 	\emph{Symfony2}\footnote{vgl. \url{http://symfony.com/}} basierendes
 	Mikro-Webapplikations-Framework für PHP 5.3. Es bietet eine überschaubare
 	und intuitive API an, ist einfach zu erweitern und durchgängig mit
 	Unit-Tests (PHPUnit\footnote{vgl. \url{http://www.phpunit.de/}}) getestet.
 	
-In diesem Projekt wurde eine Model-View-Controller Architektur (vgl.
-	\cite{Schmidt09}[S. 354]) umgesetzt. Es wurde die Erstellung, Bearbeitung
-	sowie Betrachtung von Lieferungen implementiert. Zusätzlich wurde eine
+In diesem Projekt wird eine Model-View-Controller Architektur (vgl.
+	\cite{Schmidt09}[S. 354]) umgesetzt. Es wird die Erstellung, Bearbeitung
+	sowie Betrachtung von Lieferungen implementiert. Zusätzlich wird eine
 	Verwaltung für Transport-Einheiten (z.B. LKWs) und die Benutzerverwaltung
 	für die mobile Applikation in die Webapplikation integriert.
 		
@@ -34,31 +34,31 @@ In diesem Projekt wurde eine Model-View-Controller Architektur (vgl.
 	\emph{Object-Relational-Mapper} (ORM) basierend auf dem
 	\emph{Active-Record-Pattern} \cite{Schmidt09}[S. 380] vorhanden. Dadurch
 	konnten nur relationale	Datenbanksysteme (z.B. Oracle oder MySQL) abstrahiert
-	werden. Durch die Verwendung einer Dokumentenbasierten-Datenbank (sieht
-	Kapitel~\ref{sec:couchdb}) wurde in diesem Projekt allerdings ein
+	werden. Durch die Verwendung einer Dokumenten-Orientierten-Datenbank (sieht
+	Kapitel~\ref{sec:couchdb}) wird in diesem Projekt allerdings ein
 	\emph{Object-Document-Mapper} (ODM) benötigt.
 	
-Dafür hat sich eine Erweiterung von Doctrine2 durch einen ODM für CouchDB
-	angeboten, welcher sich allerdings erst in einem frühen Alpha-Stadion befindet.
-	Dennoch wurde diese Erweiterung verwendet und in einigen Teilen sogar
+Dafür bietet sich eine Erweiterung von Doctrine2 durch einen ODM für CouchDB
+	an, welcher sich allerdings erst in einem frühen Alpha-Stadion befindet.
+	Dennoch wird diese Erweiterung verwendet und in einigen Teilen sogar
 	verbessert.
 
 \subsubsection{JavaScript Framework jQuery}
 Das JavaScript Framework \emph{jQuery}\footnote{vgl. \url{http://jquery.com/}}
 	ist eine schnelle und einfach zu bedienende Bibliothek um in HTML-Dokument
-	Manipulationen,	Ereignis-Behandlung, Animierung sowie Effekte und Ajax-
+	Manipulationen,	Ereignis-Behandlung, Animationen sowie Effekte und Ajax-
 	Interaktionen durchzuführen.
 	
-jQuery wurde entwickelt um schneller Webapplikationen zu entwickeln. Es wurde der
+jQuery wurde entwickelt um schneller Webapplikationen zu erstellen. Es wurde der
 	Fokus vor allem auf die Art, wie JavaScript in Webapplikationen verwendet wird,
 	gelegt.
 	
-In diesem Projekt wurde die Darstellung von Graphen, Karten sowie die Validierung von
+In diesem Projekt wird die Darstellung von Graphen, Karten sowie die Validierung von
 	Benutzereingaben mit jQuery realisiert.
 
 \subsubsection{Blueprint CSS Framework}
-Für die Erstellung eines einfachen \emph{Grid-Layout} \cite{W3C11}[S. 1] mithilfe von
-	\emph{Cascading-Style-Sheets} (CSS) wurde in diesem Projekt das CSS-Framework
+Für die Erstellung eines einfachen \emph{Grid-Layouts} \cite{W3C11}[S. 1] mit Hilfe von
+	\emph{Cascading-Style-Sheets} (CSS) wird in diesem Projekt das CSS-Framework
 	\emph{Blueprint}\footnote{vgl. \url{http://www.blueprintcss.org/}} verwendet.
 	
 Hiermit lässt sich schnell ein grobes Grundgerüst für moderne Webapplikationen
@@ -79,7 +79,7 @@ Eine andere wichtige Erweiterungsmöglichkeit wäre die Implementierung einer
 \subsection{Verwendung in einem realen System}
 
 In einem realen System ist möglicherweise bereits eine Backend-Applikation
-	vorhanden, welche um die entsprechenden Komponenten erweitert werden
+	vorhanden, welche um die Komponenten dieses Projekts erweitert werden
 	müsste. Die Backend-Datenbank (siehe Kapitel \ref{sec:couchdb}) kann
 	auch an eine andere Applikation angebunden werden. Beispielsweise
 	könnte eine Integration in eine SAP\footnote{vgl.

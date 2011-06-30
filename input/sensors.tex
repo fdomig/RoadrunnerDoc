@@ -1,30 +1,31 @@
 \section{Transportüberwachung mittels Sensoren}\label{sensors}
 \label{sec:sensors}
 
-In diesem Projekt wurden die Transportüberwachung mittels Sensoren, welche
-	von der Android Applikation (siehe Kapitel~\ref{sec:android})) überwacht
+In diesem Projekt wird die Transportüberwachung mittels Sensoren, welche
+	von der Android Applikation (siehe Kapitel~\ref{sec:android}) überwacht
 	werden, realisiert.
 	
-Für die in diesem Projekt spezifizierten Anforderungen (siehe Kapitel~\ref{sec:requirements})
-	wurde die Temperatur sowie die aktuelle Position eines Gegenstands überwacht. Hierzu
+Für die in diesem Projekt spezifizierten Anforderungen (siehe
+	Kapitel~\ref{sec:requirements})
+	wird die Temperatur sowie die aktuelle Position eines Gegenstands überwacht. Hierzu
 	werden zwei unterschiedliche Sensortypen, welche in den beiden nachfolgenden Abschnitten
-	erläutert werden, verwendet. Zusätzlich wurde die Zeitsynchronisation der mobilen Geräte
+	erläutert werden, verwendet. Zusätzlich wird die Zeitsynchronisation der mobilen Geräte
 	mittels eigens entwickelter Synchronisierung (wie in Abschnitt~\ref{subsec:timesync}
 	erläutert) realisiert.
 
 \subsection{Temperaturüberwachung}
 
 Temperatursensoren werden in diesem Projekt simuliert. Alle benötigten
-	Temperatursensoren werden mit \emph{nodejs}, wie in
+	Temperatursensoren werden mit \emph{node.js}, wie in
 	Abschnitt~\ref{subsec:nodejs} erläutert, simuliert.
 
 \subsection{Positionsüberwachung}
 
-In diesem System werden in einem Zeitintervall von fünf Minuten die aktuelle
-	Position eines auf dem Transportweg befinden Gegenstands aufgezeichnet.
+In diesem System werden in einem definierten Zeitintervall die aktuelle
+	Position eines sich auf dem Transportweg befindenden Gegenstands aufgezeichnet.
 	Die Positionsdaten werden von der Android Applikation bzw. der Service
 	Applikation ausgelesen. Hierzu werden die Positionsdaten via GPS bzw. UMTS
-	oder WLAN ermittelt und mit aufgezeichnet.
+	oder WLAN ermittelt und ebenfalls aufgezeichnet.
 	
-Die ermittelten Positionsdaten werden auf der Webapplikation bei den Lieferungen
+Die ermittelten Positionsdaten werden in der Webapplikation bei den Lieferungen
 	jeweils auf einer Karte dargestellt.

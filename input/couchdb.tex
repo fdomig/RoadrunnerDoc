@@ -5,28 +5,27 @@ Apache CouchDB ist ein Dokument-Orientiertes-Datenbanksystem für die Verwendung
 	mit JavaScript. CouchDB bietet inkrementelle Replikation mit bi-directionaler
 	Konflikt-Erkennung und -Lösung.
 	
-CouchDB bietet eine REST-API \cite{Fowler10}[S. 1] via \emph{JavaScript Object
+CouchDB bietet eine RESTfull-API \cite{Fowler10}[S. 1] via \emph{JavaScript Object
 	Notation} (JSON) an, welche von jeder beliebigen Umgebung mit Hilfe von
 	HTTP-Requests abgerufen werden kann. CouchDB ist zusätzlich ein System, welches
 	eine beliebige Skalierbarkeit sowie Erweiterbarkeit anbietet
 	\cite{CouchDB11}[S. 1].
 	
-In diesem Projekt wurde CouchDB eingesetzt, um ein relativ neues Gebiet der
+In diesem Projekt wird CouchDB eingesetzt, um ein neues Gebiet der
 	Datenpersistierung zu erlernen. Durch die einfache Replizierung von Daten,
-	konnte CouchDB sowohl auf der Backend-Webapplikation (vgl.
-	Kapitel~\ref{sec:webapplication}) als auch auf den mobilen Geräten (vgl.
+	kann CouchDB sowohl auf der Backend-Webapplikation (vgl.
+	Kapitel~\ref{sec:webapplication}), als auch auf den mobilen Geräten (vgl.
 	Kapitel~\ref{sec:android}) eingesetzt werden.
 
 \subsection{Implementierung}
 
 \subsubsection{JSON und Schema-Validierung}
-Als Dokumentstruktur wird von CouchDB JSON verwendet. Vor der Speicherung eines
-	JSON-Dokumentes in die Datenbank werden die Validierungsmethoden von allen
+CouchDB verwendet JSON als Dokumentstruktur. Vor der Speicherung eines
+	JSON-Dokuments in die Datenbank werden die Validierungsmethoden von allen
 	Designdokumenten in der Datenbank aufgerufen. Nur wenn alle Validierungen
-	erfolgreich sind wird das Dokument gespeichert. Obwohl JSON Schemalos ist
-	kann trotzdem eine Schemavalidierung durchgeführt werden. Als Schema wird
-	das JSON-Schema verwendet, dass sich aktuell in Version 03
-	befindet \cite{IETF11}[S. 1]. 
+	erfolgreich sind wird das Dokument gespeichert. Obwohl JSON schemalos ist,
+	kann trotzdem eine Schema-Validierung durchgeführt werden. Als Schema wird
+	das JSON-Schema verwendet \cite{IETF11}[S. 1]. 
 
 In einem Designdokument können verschiedene Validierungen eingeführt werden.
 	Zusätzlich zu Validierungen der Benutzerrechte werden in diesem Projekt alle
@@ -42,22 +41,22 @@ Daten können auf unterschiedliche Arten in einem System verteilt werden. Eine
 Mit CouchDB wird die Synchronisierung der Daten in diesem Projekt von den
 	Datenbankinstanzen selbst durchgeführt. Diese Synchronisierung nennt sich 
 	Replizierung. Bei dieser kann explizit angegeben werden, welche Daten
-	in jeweils welche Richtung synchronisiert werden.
+	von welcher Instanz auf welche Instanz synchronisiert werden sollen.
 
 \subsubsection{Dokumentänderung - MapReduce}
 
 \emph{MapReduce}\footnote{vgl. \url{http://labs.google.com/papers/mapreduce-osdi04.pdf}}
-	ist ein Framework von Google, dass entwickelt wurde damit sehr große
+	ist ein Framework von Google, das entwickelt wurde damit sehr große
 	Datenmengen parallel bearbeitet werden können. CouchDB verwendet ebenfalls
 	einen ähnlichen Ansatz um Daten aus der Datenbank zu lesen. Anhand eines
 	Beispiels wird die Funktionsweise von MapReduce nachfolgend erläutert.
 
 \paragraph{Map - Phase} Auf jedes Dokument in der Datenbank wird die Map-Methode
-	angewendet. In einer Map-Methode werden Key-Value-Paarungen gebildet. Jedes
-	Dokument in der Datenbank kann eine beliebige Anzahl an Key-Value-Paarungen
-	generieren. Diese Key-Value-Paarungen werden in einem B-Baum (vgl.
+	angewendet. In einer Map-Methode werden Key-Value-Paare gebildet. Jedes
+	Dokument in der Datenbank kann eine beliebige Anzahl an Key-Value-Paare
+	generieren. Diese Key-Value-Paare werden in einem B-Baum (vgl.
 	\cite{Ottmann96}[S. 317-327]) gespeichert. Ändert sich nun ein Dokument müssen
-	nur die entsprechenden Paarungen in	dem B-Baum angepasst werden. 
+	nur die entsprechenden Paare im B-Baum angepasst werden. 
 
 \paragraph{Reduce - Phase} In dieser Phase wird auf jedem Knoten im Baum die
 	Reduce-Methode angewendet. Ziel der Reduce-Methode ist es die Datenmenge zu
@@ -65,21 +64,21 @@ Mit CouchDB wird die Synchronisierung der Daten in diesem Projekt von den
 
 \subsection{Mögliche Erweiterungen}
 
-Mögliche Erweiterungen wären zusätzliche Views mit denen bestimmte Informationen
-	aus der Datenbank gelesen werden können. In diesem Projekt ist eine View
-	umgesetzt, welche den Status eines Produkts (geladen, gelifert, etc.) ermitteln
-	kann.
+Mögliche Erweiterungen wären zusätzliche \emph{Views} (ähnlich eines SQL-Views)
+	mit denen bestimmte Informationen aus der Datenbank gelesen werden können.
+	In diesem Projekt wird eine View umgesetzt, welche den Status eines Produkts
+	(geladen, geliefert, etc.) ermitteln kann.
 
-Wichtig wäre auch ein View, die den Status einer ganzen Lieferung ermittelt oder
+Wichtig ist eine View, die den Status einer ganzen Lieferung ermittelt oder
 	eine View zur Ermittlung an welchen Positionen sich die einzelnen Fahrzeuge
-	gerade befinden, sodass die Fahrzeugposition beispielsweise auf einer Karte
-	dargestellt werden kann.
+	gerade befinden. Damit kann die aktuelle Fahrzeugposition beispielsweise auf
+	einer Karte	dargestellt werden.
 
 \subsection{Verwendung in einem realen Projekt}
 
 Bei der Umsetzung in einem realen System liegen möglicherweise bereits Daten des
  	Unternehmens vor. Da relationale Datenbanken weit verbreitet sind, müssen die
-	bereits vorhandenen Daten per Importer in CouchDB übertragen werden.
+	bereits vorhandenen Daten in CouchDB importiert werden.
 
 Weiters muss die Datenbank per Proxy abgesichert werden, sodass über das Internet
 	nur über klar definierte Schnittstellen auf die Datenbank zugegriffen werden

@@ -10,8 +10,8 @@ In diesem Abschnitt werden die in diesem Projekt verwendeten Technologien
 
 \subsection{Mobiles Gerät auf Basis von Android}
 
-Bei diesem Transportüberwachungssystem sollten laut den in
-	Kapitel~\ref{sec:requirements} spezifizierten Anforderungen eine lückenlose
+Bei diesem Transportüberwachungssystem wird laut den in
+	Kapitel~\ref{sec:requirements} spezifizierten Anforderungen, eine lückenlose
 	und ständige Überwachung sichergestellt werden. Somit müssen Sensorendaten
 	laufend auf ein Backendsystem übertragen werden. Hierzu bietet sich
 	die \emph{Android}\footnote{vgl. \url{http://www.android.com/}} Plattform
@@ -20,22 +20,23 @@ Bei diesem Transportüberwachungssystem sollten laut den in
 Mit Android als Grundlage können gleich mehrere Aspekte abgedeckt werden. Jedes
 	Fahrzeug wird mit einem Android Smartphone ausgestattet und ist somit nicht
 	nur telefonisch erreichbar sondern gleichzeitig kann die komplette
-	Transportüberwachung damit erreicht werden.
+	Transportüberwachung damit realisiert werden.
 	
-Mit der entwickelten Applikation lassen sich Gegenstände einladen, indem diese
-	via Barcode in das System übernommen werden. Ab diesem Zeitpunkt wird dieser
+Mit der entwickelten Applikation können Gegenstände als in einem Transportmittel
+	``einladen'' werden. Hierzu werden diese via Barcode-Scanning in das System
+	übernommen werden. Ab diesem Zeitpunkt wird dieser
 	Gegenstand ständig überwacht und via CouchDB (siehe Abschnitt~\ref{subsec:couchdb})
 	mit dem Backensystem synchronisiert. Auf der Webapplikation (siehe
 	Abschnitt~\ref{subsec:webapplication}) können die Produkte bzw. die Lieferung,
-	welche aus mehreren Produkten bestehen kann, nun auf einer Karte
-	nachverfolgt werden, sowie die jeweiligen Daten der Temperatursensoren
-	(siehe Abschnitt~\ref{subsec:nodejs}) bis zum Ausladen überprüft werden.
+	welche aus mehreren Produkten bestehen kann, auf einer Karte
+	nachverfolgt, sowie die jeweiligen Daten der Temperatursensoren
+	(siehe Abschnitt~\ref{subsec:nodejs}) bis zum Entladevorgang überprüft werden.
 		
 Auch in einem realen Szenario lässt sich Android hervorragend einsetzen. Es ist
 	mittlerweile in Version~3.1 (15. Juni 2011) verfügbar und weit verbreitet.
 	Die von Google bereitgestellten \emph{Google Apps for Business}\footnote{vgl.
-	\url{http://www.google.com/apps/intl/de/business/index.html}} können die
-	Smartphones per Fernwartung administriert werden. Dabei können auch
+	\url{http://www.google.com/apps/intl/de/business/index.html}} ermöglichen eine
+	Administration der Smartphones per Fernwartung. Dabei können auch
 	Applikations-Updates an alle registrierten Smartphones verteilt werden.
 	Somit ist auch eine einfache Lösung für das Deployment von neuen Versionen
 	gegeben.
@@ -43,7 +44,7 @@ Auch in einem realen Szenario lässt sich Android hervorragend einsetzen. Es ist
 Im Kapitel~\ref{sec:android} wird die in diesem Projekt erstellte Android Applikation
 	beschrieben.
 
-\subsection{Verteiltes Datenbansystem CouchDB}
+\subsection{Verteiltes Datenbanksystem CouchDB}
 \label{subsec:couchdb}
 
 Bei einem Transportüberwachungssystem ist die Datensicherung ein
@@ -51,16 +52,16 @@ Bei einem Transportüberwachungssystem ist die Datensicherung ein
 	betrachtet und erläutert welches System für dieses
 	verwendet wird.
 
-In diesem Projekt wurde durch die in Kapitel~\ref{sec:requirements} spezifizierten
+In diesem Projekt wird durch die in Kapitel~\ref{sec:requirements} spezifizierten
 	Anforderungen ein Fokus auf die Verteiltheit des Systems gelegt. Es fallen
 	durch die mobile Transportüberwachung Daten auf mobilen Geräten an, welche
-	mit einem Backendsystem synchronisiert werden müssen. Aus diesem Grund wurde
+	mit einem Backendsystem synchronisiert werden müssen. Aus diesem Grund wird
 	für das Datenbanksystem kein klassisches System in Betracht gezogen. Um einen
 	neuen Ansatz in der Datenpersistierung zu erlernen, wurde das verteilte
 	und dokumentbasierte Datenbankmanagementsystem \emph{CouchDB}\footnote{vgl.
 	\url{http://couchdb.apache.org/}} verwendet.
 
-In einem real logistischen Szenario muss auf die Skalierbarkeit sowie die
+In einem real-logistischen Szenario muss auf die Skalierbarkeit sowie die
 	Robustheit von CouchDB betrachtet werden. Klassische relationale
 	Datenbankmanagementsysteme bringen durch die bereits sehr gut entwickelten
 	Versionen vor allem einen Vorteil in der Robustheit und Stabilität. Dennoch,
@@ -75,23 +76,24 @@ Einen detaillierten Überblick der Verwendung von CouchDB in diesem Projekt
 \label{subsec:webapplication}
 
 Um ein benutzerfreundliches und einfaches Backendsystem
-	für dieses Projekt zu erstellen, wurde auf mehrere bereits bestehende Frameworks
+	für dieses Projekt zu erstellen, wird auf mehrere bereits bestehende Frameworks
 	zurückgegriffen. \emph{Silex}\footnote{vgl. \url{http://silex-project.org}} ist
 	ein	Mikroframework für PHP 5.3. Es basiert wiederum auf dem Kern des
 	\emph{Symfony2}\footnote{vgl. \url{http://symfony.com}} Frameworks.
 	
 Mit diesem Framework lassen sich einfache Webapplikationen sehr effizient in einer
-	Model-View-Controller Umgebung implementieren. Durch die schöne Trennung der
+	Model-View-Controller Architektur implementieren. Durch die schöne Trennung der
 	jeweiligen Schichten sowie der leichten Testbarkeit ist Silex für dieses
 	Projekt hervorragend geeignet.
 	
 Für ein Szenario in der Realität kann Silex sehr gut eingesetzt werden, solange das
-	System einfach und klein ist. Mit mehr in dem Backendsystem implementierten
-	Anwendungsfällen sollte ein Wechsel zu Symfony2 in Betracht gezogen werden, da
-	sich damit deutlich komplexere Anwendungsfälle implementieren lassen. Ein solcher
+	System einfach und klein ist. Bei steigender Anzahl an implementierter
+	Anwendungsfälle im Backendsystem, sollte ein Wechsel zu Symfony2 in Betracht
+	gezogen werden, da sich damit deutlich komplexere Anwendungsfälle
+	implementieren lassen. Ein solcher
 	Wechsel ist durch die bereits in Silex verwendeten Komponenten von Symfony2
-	leicht zu vollziehen. Die bereits bestehenden Komponenten können
-	weiterverwendet werden.
+	leicht zu vollziehen, da die bereits bestehenden Komponenten weiterverwendet
+	werden können.
 	
 In Kapitel~\ref{sec:webapplication} wird eine detaillierte des Backendsystems
 	gegeben.
@@ -99,25 +101,25 @@ In Kapitel~\ref{sec:webapplication} wird eine detaillierte des Backendsystems
 \subsection{Sensoren-Simulation mit Node.js}
 \label{subsec:nodejs}
 
-Für dieses Projekt wurden Temperatursensoren sowie Zeitsynchronisation mit
+Für dieses Projekt werden Temperatursensoren sowie Zeitsynchronisation mit
 	Hilfe von \emph{Node.js}\footnote{vgl. \url{http://nodejs.org/}} simuliert.
-	Es wurde in diesem Projekt das Augenmerk vor allem auf die mobile Applikation
-	mit Android unter Verwendung einer verteilten Datenbank sowie der
-	Webapplikation gelegt. Somit wurden	bis auf	Positionssensoren (GPS) keine
-	realen Sensoren verwendet.
+	In diesem Projekt liegt das Augenmerk vor allem auf der mobilen Applikation
+	mit Android, unter Verwendung einer verteilten Datenbank, sowie der
+	Webapplikation. Somit werden bis auf Positionssensoren (GPS) des Android
+	Smartphones keine realen Sensoren verwendet.
 
 Node.js ist ein ereignisgesteuertes I/O Framework für die V8 JavaScript
-	Engine \cite{Wikipedia10a}. Diese wurde in C++ sowie JavaScript entwickelt
+	Engine \cite{Wikipedia10a}. Diese Engine ist in C++ sowie JavaScript entwickelt
 	und liegt in einer MIT-Lizenz vor, welches es für dieses Projekt einsetzbar
 	macht und zugleich auch in einem realen Szenario eingesetzt werden könnte.
 
-Mit Node.js können mit wenigen Zeilen Code, Server-Applikationen programmiert
+Mit Node.js können mit wenigen Zeilen Code Server-Applikationen programmiert
 	werden. Es wird hierzu auf einem Interface (IP) sowie einem beliebigen Port
 	eine JavaScript Callback-Funktion registriert, welche bei einem Zugriff
 	aufgerufen wird. Dies macht es sehr einfach, Sensoren in diesem System zu
 	simulieren, welche via HTTP-Requests ``ausgelesen'' werden können.
 	
-In einem real logistischen System werden Sensoren nicht simuliert und somit
+In einem real-logistischen System werden Sensoren nicht simuliert und somit
 	spielt Node.js nur in diesem simulierten Szenario eine Rolle.
 	
 In Kapitel~\ref{sec:sensors} werden die in diesem System mit Node.js simulierten

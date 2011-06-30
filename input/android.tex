@@ -1,52 +1,61 @@
 \section{Android Applikation}
 \label{sec:android}
 
-Als Hauptsystem in diesem Projekt wurde eine Applikation für die Android
+Als Hauptsystem in diesem Projekt wird eine Applikation für die Android
 	Plattform erstellt. Diese Applikation dient der mobilen Überwachung
 	von Lieferungen bzw. den Gegenständen einer Lieferung.
 
-Android \footnote{http://www.android.com/} ist ein Betriebssystem sowie auch eine Software Plattform für mobile Geräte.
-Es werden Smartphones, Netbooks, Mobiltelefone und Tablets unterstützt. Entwickelt wurde das Betriebssystem von der
-\emph{Open Handset Alliance} \footnote{http://www.openhandsetalliance.com/}, einem Konsortium von 80 Firmen zur Schaffung offenen Standards 
-für mobile Geräte, die von \emph{Google} im Jahr 2007 gegründet wurde (vlg. \cite{OHA07}). 
+Android\footnote{vgl. \url{http://www.android.com/}} ist ein Betriebssystem sowie auch
+	eine Software Plattform für mobile Geräte. Es werden Smartphones, Netbooks,
+	Mobiltelefone und Tablets unterstützt. Entwickelt wurde das Betriebssystem
+	von der \emph{Open Handset Alliance}\footnote{vgl.
+	\url{http://www.openhandsetalliance.com/}},
+	einem Konsortium von 80 Firmen zur Schaffung offener Standards für mobile Geräte,
+	die von Google im Jahr 2007 gegründet wurde (vgl. \cite{OHA07}). 
 
-Wir entschieden uns für Android, da es die gewünschten Anforderungen an unsere mobile Applikation am besten erfüllt. 
-Ein wichtiger Aspekt für unsere Entscheidung war, dass Android \emph{Open Source} ist und ständig verbessert wird.
-Android unterstützt ebenfalls \emph{CouchDB}, die wir auch in unserem Backend System einsetzen, was ein weiters wichtiges Kriterium war.
-Das \emph{Android SDK} ist als Plugin für \emph{Eclipse} \footnote{http://www.eclipse.org/} verfügbar und ermöglichte es uns somit ein 
-plattformunabhängige Entwicklung in einer gewohnten Entwicklungsumgebung. Ein weiterer Vorteil von Android ist, dass die Smartphones von
-mehreren verschiedenen Herstellern angeboten werden, was dem Kunden einen Gewissen Spielraum bei der Anschaffung der Smartphones gibt.
-Ebenfalls war für uns ein einfaches Deployment, mit einfachen Updates, der Anwendung wichtig, welche mittels \emph{adb} und \emph{App-Installer}
-ermöglicht wird. Ein Nachteil könnte die fehlerhafte Bedienung des Benutzers sein, die die Funktionsweise der mobilen Applikation beeinträchtigten könnte.
+In diesem Projekt wird Android gewählt, da es die gewünschten Anforderungen an unsere
+	mobile Applikation am besten erfüllt. Ein wichtiger Aspekt für diese Entscheidung
+	ist, dass Android Open-Source ist und ständig verbessert wird.
+
+Android unterstützt ebenfalls CouchDB, welche auch in unserem Backend System einsetzen,
+	was ein weiters wichtiges Kriterium ist. Das Android SDK ist als Plugin für
+	Eclipse\footnote{vgl. \url{http://www.eclipse.org/}} verfügbar und ermöglichte
+	es uns somit ein plattformunabhängige Entwicklung in einer gewohnten
+	Entwicklungsumgebung. Ein weiterer Vorteil von Android ist, dass die Smartphones
+	von mehreren verschiedenen Herstellern angeboten werden, was dem Kunden einen
+	Gewissen Spielraum bei der Anschaffung der Smartphones gibt. Ebenfalls ist
+	ein einfaches Deployment, sowie Updates für die Anwendung wichtig. Dies wird mit
+	$adb$ oder App-Installer ermöglicht. Ein Nachteil könnte die fehlerhafte
+	Bedienung des Benutzers sein, die die Funktionsweise der mobilen Applikation
+	beeinträchtigten könnte.
 
 \subsection{Benutzung}
 
-Nach dem sich der Fahrer mit seinem Benutzernamen, seinem Passwort und der ausgewählten Transporteinheit eingeloggt hat, gelangt er auf den \emph{Home} Screen.
-Die Benutzeroberfläche des \emph{Home} Screens ist einfach und intuitiv gestaltet. Der Fahrer hat dann die Möglichkeit 
+Nach dem sich ein Benutzer mit seinem Benutzernamen, seinem Passwort und der ausgewählten Transporteinheit angemeldet hat, gelangt er auf den Home Screen.
+Die Benutzeroberfläche des Home Screens ist einfach und intuitiv gestaltet. Der Benutzer hat dann die Möglichkeit 
 Barcodes zu scannen sowie die Lieferdetails zu den aktuell geladenen Paketen anzusehen.
 Nachdem der Barcode eines Pakets gescannt wurde, kann abhängig vom Status des Paketes (aufgeladen - nicht aufgeladen), das Paket
 geladen, entladen oder abgeliefert werden. Wenn ein Paket abgeliefert wird, kann der Kunde die Lieferung mit seiner Unterschrift bestätigen.
 
-Mit einem Klick auf den Menüpunkt \emph{My Deliveries} sieht der Fahrer die Adressinformationen des Senders bzw. Empfängers für jede Lieferung.
+Mit einem Klick auf den Menüpunkt \emph{My Deliveries} sieht der Benutzer die Adressinformation des Senders bzw. des Empfängers für jede Lieferung.
 Weiters können alle Pakete und deren Status einer ausgewählten Lieferung angezeigt werden. 
-Außerdem kann die Karte mit der eingezeichnenten Route und der aktuellen Positionen des Fahrers angezeigt werden.
+Außerdem kann die Karte mit der eingezeichneten Route und der aktuellen Positionen des Benutzers angezeigt werden.
 
 \subsection{Implementierung}
 
-Bei der Implementierung der Benutzeroberfläche wurden bekannte \emph{UI-Patterns} verwendet. Auf dem \emph{Home} Screen der Applikation
-wurde das \emph{Dashboard} Pattern verwendet um die Navigation in der Applikation klar und einfach zu gestalten. Des Weitern enthält jeder
-Screen eine \emph{Action Bar} im oberen Teil, die dem Benutzer anzeigt in welchem Kontext der Applikation er sich gerade befindet (\emph{breadcrumbs navigation}).
-Mit einem Klick auf das \emph{Home} Symbol in der \emph{Action Bar} hat der Benutzer jederzeit die Möglichkeit wieder auf den \emph{Home} Screen zu gelangen.
+Bei der Implementierung der Benutzeroberfläche werden bekannte \emph{UI-Patterns} verwendet. Auf dem Home Screen der Applikation
+wird das \emph{Dashboard Pattern} verwendet um die Navigation in der Applikation klar und einfach zu gestalten. Des Weiteren enthält jeder
+Screen eine \emph{Action Bar} im oberen Teil, die dem Benutzer anzeigt in welchem Kontext der Applikation er sich gerade befindet (\emph{Breadcrumb Navigation}).
+Mit einem Klick auf das Home Symbol in der Action Bar hat der Benutzer jederzeit die Möglichkeit wieder auf den Home Screen zu gelangen.
 
 Die Dienste zur Überwachung der Temperatur und der GPS-Position sowie zum replizieren der Daten mit der serverseitigen Datenbank sind als \emph{Android Services},
-die im Hintergrund laufen, implementiert. Somit wird gewährleistet dass diese wichtige Dienste unabhängig von der Applikation, die auch vom Benutzer geschlossen werden kann,
-durchgeführt werden. Diese \emph{Android Services} laufen durchgängig im Hintergrund und müssen explizit beendet werden, falls notwendig.
+die im Hintergrund laufen, implementiert. Somit wird gewährleistet, dass diese wichtigen Dienste unabhängig von der Applikation, die auch vom Benutzer geschlossen werden kann,
+durchgeführt werden.
 
 \subsection{Mögliche Erweiterungen}
 
-Mögliche Erweiterungen, die bis jetzt noch nicht umgesetzt wurden, wären beispielsweise eine automatische Berechnung der besten Route, abhängig
-von den zu erledigenden Lieferungen. Weiters könnte die berechnete Route in das Navigationssystem \emph{Navigation} von \emph{Google} übernommen werden.
-Ein weiterer Nutzen für den Fahrer wäre auch die Darstellung der aktuellen Temperaturwerte seiner geladenen Güter, sowie eine Benachrichtigung wenn diese unter-
-bzw. überschritten wird. Eventuell könnte in Zukunft auch eine Benachrichtigung an das Fahrzeug, beispielsweise zum abholen eines Paketes, direkt
+Mögliche Erweiterungen, die in diesem Projekt nicht umgesetzt werden, wären beispielsweise eine automatische Berechnung der besten Route, abhängig
+von den zu erledigenden Lieferungen. Weiters könnte die berechnete Route in das Navigationssystem Navigation von Google übernommen werden.
+Ein weiterer Nutzen für den Benutzer wäre auch die Darstellung der aktuellen Temperaturwerte seiner geladenen Güter, sowie eine Benachrichtigung wenn die Maximale- bzw. Minimale-Temperaturgrenze über- bzw. unterschritten wird. Eventuell könnte in Zukunft auch eine Benachrichtigung an das Fahrzeug, beispielsweise zum Abholen eines Pakets direkt
 aus der Web-Anwendung gesendet werden.
 

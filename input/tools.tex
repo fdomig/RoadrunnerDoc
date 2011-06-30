@@ -1,59 +1,59 @@
 \section{Projektunterstützende Werkzeuge und Hilfsmittel}
 \label{sec:tools}
 
-In diesem Projekt wurden mehrere projektunterstützende Werkzeuge verwendet.
+In diesem Projekt werden mehrere projektunterstützende Werkzeuge verwendet.
 	Durch den sehr agilen Entwicklungsprozess (siehe Kapitel~\ref{sec:development})
-	wurden vor allem auf eine entsprechende Versionskontrolle sowie ein
+	wird vor allem auf eine entsprechende Versionskontrolle sowie ein
 	Continuous-Integration-Server zur Überwachung des jeweiligen Entwicklungsstands
 	geachtet. Diese beiden Systeme sind in den nachfolgenden Abschnitten erläutert.
 
 \subsection{Versionskontrollsystem GIT mit github.com}
 \label{subsec:git}
 
-Git ist ein verteiltes Revisions-Kontroll-System mit einem Schwerpunkt auf
-	Geschwindigkeit. Git wurde ursprünglich entworfen und
-	entwickelt von Linus Torvalds für Linux-Kernel-Entwicklung \cite{Torvalds07}.
+Git ist ein verteiltes Revisions-Kontroll-System, dessen Schwerpunkt auf
+	Geschwindigkeit liegt. Git wurde ursprünglich von Linus Torvalds für
+	Linux-Kernel-Entwicklung \cite{Torvalds07} entworfen und entwickelt.
 	Jedes Git-Arbeitsverzeichnis ist ein vollwertiges \emph{Repository} mit
-	kompletter Historie und vollständige Überarbeitung Tracking-Fähigkeiten,
-	nicht abhängig von Netzwerkzugang oder einen zentralen Server. Git aktuellen
-	Software-Wartung wird durch Junio Hamano betreut. Git ist freie Software unter
-	den Bedingungen der GNU General Public License Version 2 verteilt.
+	kompletter Historie und vollständigem Commit-Tracking.
+	Git ist nicht abhängig von einem Netzwerkzugang oder einen zentralen
+	Server, das heißt es kann auch nur lokal entwickelt werden.
+	Git ist freie Software unter der GPL2 (GNU General Public License
+	Version 2) verteilt.
 	
-In diesem Projekt wurde Git für alle Teile des Projekts eingesetzt. Es wurde sowohl
+In diesem Projekt wird Git für alle Teile des Projekts eingesetzt. Es wird sowohl
 	die CouchDB Applikation, die Android Applikation, die Webapplikation sowie die
-	Dokumentation via Git verwaltetet und alle Projektmitglieder konnten in alle
-	Teile einsehen sowie mitarbeiten.
+	Dokumentation via Git verwaltetet. Alle Projektmitglieder können alle
+	Komponenten einsehen und bearbeiten.
 	
-Um Git auch Online zu synchronisieren, wurde in diesem Projekt
-	gihub.com\footnote{vgl. \url{http://github.com}} verwendet. Via github ist es
+Um Git auch Online zu synchronisieren, wird in diesem Projekt
+	gihub.com\footnote{vgl. \url{http://github.com}} verwendet. Via github.com ist es
 	möglich, zusätzliche projektunterstützende Werkzeuge (wie z.B. Issue-Tracking,
 	Wiki, etc.) zu verwenden.
 
-\subsection{Continious Integration mit Jenkins}
+\subsection{Continuous Integration mit Jenkins}
 \label{subsec:ci}
 
-Jenkins, früher bekannt als Hudson bekannt, ist eine Open-Source-Continuous
-	Integration (CI)-Tool, welches in Java geschrieben ist. Jenkins bietet
-	kontinuierliche Integrations-Services für Software-Entwicklung an. Vor
-	allem in der Programmiersprache Java. Es ist ein server-basiertes System
+Jenkins ist eine Open-Source-Continuous-Integration (CI)-Tool, welches in Java
+	geschrieben ist. Jenkins bietet kontinuierliche Integrations-Services für
+	Software-Entwicklung an. Es ist ein server-basiertes System
 	mit einem Servlet-Container wie Apache Tomcat. Es unterstützt SCM-Tools
-	einschließlich CVS, Subversion, Git und Clearcase und Apache Ant und Apache
-	Maven basierende Projekte, sowie beliebige Shell-Skripte und
-	Windows-Batch-Befehle auszuführen. Jenkins ist freie Software und wird
-	unter der MIT-Lizenz veröffentlicht.
+	wie CVS, Subversion, Git und Clearcase. Zudem werden die Build-Tools
+	Apache Ant und Apache-Maven, sowie beliebige Shell-Skripte und
+	Windows-Batch-Befehle unterstützt. Jenkins ist freie Software und wird
+	unter der MIT-Lizenz (Massachusetts Institute of Technology License) veröffentlicht.
 	
-In diesem Projekt wurde sowohl die Android Applikation (Java) sowie die
-	Webapplikation automatisiert via Jenkins getestet. Bei jedem neuen
-	Commit, welcher zu github synchronisiert wurde, wird automatisiert
+In diesem Projekt wird sowohl die Android Applikation (Java) sowie die
+	Webapplikation (PHP) automatisiert via Jenkins getestet. Bei jedem neuen
+	Commit, welcher zu github.com synchronisiert wird, wird automatisiert
 	ein Checkout von Jenkins in ein neues Verzeichnis erstellt. Danach
 	wird das jeweilige Ant-Build-Script $build.xml$ ausgeführt und die
 	Software kompiliert. Anschließend werden die definierten
-	Analysewerkzeuge mit einer jeweiligen Konfiguration ausgeführt.
+	Analysewerkzeuge mit der jeweiligen Konfiguration ausgeführt.
 	
-Bei der Android Applikation wurden JUnit\footnote{vgl.
+Bei der Android Applikation werden JUnit\footnote{vgl.
 	\url{http://www.junit.org/}} Tests ausgeführt.
 	
-Bei der Webapplikation wurden PHPUnit\footnote{vgl.
+Bei der Webapplikation werden PHPUnit\footnote{vgl.
 	\url{http://www.phpunit.de/}}, PHP-Check-Style, PHP-Mess-Detector sowie
 	PHP-Copy-Paste-Detector verwendet um die Qualität zu überprüfen.
 	
